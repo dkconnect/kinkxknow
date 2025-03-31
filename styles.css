@@ -1,0 +1,383 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: #fff0f5; /* Light pink background */
+  color: #3b233a; /* Dark purple text */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+body[data-theme="dark"] {
+  background: #2b1a2a; /* Dark purple background */
+  color: #f8e1e9; /* Light pink text */
+}
+
+/* Buttons */
+button {
+  background: #ff7096; /* Bright pink */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1em;
+  margin: 5px;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background: #ff85a6; /* Lighter pink on hover */
+  transform: scale(1.05);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: flex-start; /* Changed from center to allow scrolling from top */
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  padding: 20px 0; /* Add padding to prevent content from touching edges */
+}
+
+.modal-content {
+  background: #fff0f5; /* Light pink */
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  max-height: 90vh; /* Limit height to 90% of viewport */
+  overflow-y: auto; /* Enable scrolling within modal if content overflows */
+}
+
+body[data-theme="dark"] .modal-content {
+  background: #3b233a; /* Darker purple */
+}
+
+/* Close button */
+#close-style-finder {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #ff7096; /* Bright pink */
+}
+
+#close-style-finder:hover {
+  color: #ff85a6; /* Lighter pink */
+}
+
+/* Progress tracker */
+#progress-tracker {
+  font-size: 0.9em;
+  color: #7a5a6e; /* Muted purple */
+  margin-bottom: 10px;
+}
+
+body[data-theme="dark"] #progress-tracker {
+  color: #d8b8cb; /* Light muted pink */
+}
+
+/* Step content */
+#step-content h2 {
+  color: #ff7096; /* Bright pink */
+  margin-bottom: 10px;
+}
+
+#step-content p {
+  margin-bottom: 15px;
+}
+
+/* Feedback */
+#feedback {
+  font-size: 0.9em;
+  color: #ff7096; /* Bright pink */
+  margin: 10px 0;
+}
+
+/* Dashboard */
+#dashboard {
+  margin-top: 15px;
+  font-size: 0.8em;
+  color: #3b233a; /* Dark purple */
+}
+
+body[data-theme="dark"] #dashboard {
+  color: #f8e1e9; /* Light pink */
+}
+
+/* Dashboard Header */
+.dashboard-header {
+  font-size: 1.2em;
+  color: #ff7096;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Dashboard Item */
+.dashboard-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 112, 150, 0.1); /* Transparent pink bubble */
+  border-radius: 15px;
+  padding: 8px 12px;
+  margin: 5px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+body[data-theme="dark"] .dashboard-item {
+  background: rgba(248, 225, 233, 0.1); /* Light pink in dark mode */
+}
+
+/* Style Name */
+.style-name {
+  font-family: 'Comic Sans MS', cursive; /* Playful font */
+  font-size: 1em;
+}
+
+/* Dashboard Score */
+.dashboard-score {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Movement Indicators */
+.move-up, .move-down {
+  color: #ff7096;
+  font-size: 1.2em;
+  opacity: 1;
+  animation: fadeOut 1s ease forwards;
+}
+
+/* Score Delta */
+.score-delta {
+  font-size: 0.8em;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: rgba(255, 112, 150, 0.3);
+}
+
+.score-delta.positive {
+  color: #ff7096;
+}
+
+.score-delta.negative {
+  color: #7a5a6e; /* Muted purple */
+}
+
+body[data-theme="dark"] .score-delta.negative {
+  color: #d8b8cb; /* Light muted pink */
+}
+
+/* Sliders */
+.trait-slider {
+  width: 100%;
+  max-width: 400px;
+  margin: 15px 0;
+  -webkit-appearance: none;
+  height: 8px;
+  background: #f8e1e9; /* Light pink track */
+  border-radius: 5px;
+  outline: none;
+  transition: background 0.3s;
+}
+
+.trait-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #ff7096; /* Bright pink thumb */
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.trait-slider::-webkit-slider-thumb:hover {
+  background: #ff85a6; /* Lighter pink */
+  transform: scale(1.1);
+}
+
+body[data-theme="dark"] .trait-slider {
+  background: #5a3a56; /* Darker pink track */
+}
+
+.slider-description {
+  font-size: 1em;
+  color: #ff7096; /* Bright pink */
+  margin-top: 10px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  text-align: center;
+  padding: 5px 10px;
+  background: rgba(255, 112, 150, 0.1); /* Transparent pink */
+  border-radius: 10px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slider-footnote {
+  font-size: 0.8em;
+  color: #7a5a6e; /* Muted purple */
+  margin-top: 5px;
+  text-align: center;
+}
+
+body[data-theme="dark"] .slider-footnote {
+  color: #d8b8cb; /* Light muted pink */
+}
+
+/* Info icons */
+.info-icon {
+  cursor: pointer;
+  margin-left: 5px;
+  color: #ff7096; /* Bright pink */
+  font-size: 1em;
+  vertical-align: middle;
+  transition: transform 0.2s;
+}
+
+.info-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Popup styles */
+.style-info-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #f8e1e9; /* Light pink */
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  text-align: left;
+}
+
+body[data-theme="dark"] .style-info-popup {
+  background: #3b233a; /* Darker purple */
+}
+
+.style-info-popup h3 {
+  color: #ff7096; /* Bright pink */
+  margin-bottom: 10px;
+}
+
+.style-info-popup p {
+  margin-bottom: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  color: #ff7096; /* Bright pink */
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #ff85a6; /* Lighter pink */
+}
+
+/* Result section */
+.result-section {
+  margin: 20px 0;
+}
+
+.result-heading {
+  color: #ff7096; /* Bright pink */
+  border-bottom: 2px solid #ff7096;
+  padding-bottom: 5px;
+}
+
+.result-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.feedback-animation {
+  animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .modal-content {
+    width: 95%;
+    padding: 15px;
+  }
+
+  button {
+    padding: 8px 16px;
+    font-size: 0.9em;
+  }
+
+  #step-content h2 {
+    font-size: 1.2em;
+  }
+
+  .trait-slider {
+    max-width: 300px;
+  }
+
+  .slider-description {
+    font-size: 0.9em;
+  }
+}
