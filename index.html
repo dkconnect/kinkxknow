@@ -3,26 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BDSM Style</title>
+  <title>Kink X Know</title>
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="images/BDSM-removebg-preview.png">
 </head>
 <body data-theme="light">
-  <div class="center-content">
-    <img src="images/BDSM-removebg-preview.png" alt="Centered Image">
-    <button id="style-finder-btn">Find Your BDSM Style!</button>
-    <button id="theme-toggle">🌙</button>
-  </div>
-  <div id="style-finder" class="modal">
+  <main class="container">
+    <header class="header">
+      <h1>Kink X Know</h1>
+      <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+    </header>
+    <section class="hero">
+      <img src="images/BDSM-removebg-preview.png" alt="kinkxknow Logo" class="hero-image">
+      <button id="start-quiz" class="btn btn-primary">Discover Your Style!</button>
+    </section>
+  </main>
+  <div id="quiz-modal" class="modal" role="dialog" aria-labelledby="quiz-title">
     <div class="modal-content">
-      <span id="close-style-finder">×</span>
-      <div id="progress-tracker"></div>
-      <div id="step-content"></div>
-      <p id="feedback"></p>
-      <div id="dashboard"></div>
+      <button id="close-quiz" class="close-btn" aria-label="Close quiz">×</button>
+      <h2 id="quiz-title" class="modal-title"></h2>
+      <div id="progress-bar" class="progress-bar">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+      <div id="quiz-content" class="quiz-content"></div>
+      <div id="quiz-feedback" class="feedback"></div>
     </div>
   </div>
-  
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script src="script.js"></script>
 </body>
+</html>
