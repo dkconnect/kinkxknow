@@ -5,6 +5,8 @@ class StyleExplorer {
     this.role = null;
     this.answers = { traits: {} };
     this.scores = {};
+    this.showDashboard = false;
+    this.showBreakdown = false; 
     this.traits = {
       submissive: [
         { name: 'obedience', question: 'How much do you enjoy following guidance?', label: '1: Prefer freedom / 10: Love obeying' },
@@ -49,18 +51,22 @@ class StyleExplorer {
       progressBar: document.getElementById('progress-fill'),
       quizContent: document.getElementById('quiz-content'),
       feedback: document.getElementById('quiz-feedback'),
-      themeToggle: document.getElementById('theme-toggle')
+      themeToggle: document.getElementById('theme-toggle'),
+      historyBtn: document.getElementById('history-btn'),
+      historyModal: document.getElementById('history-modal'),
+      closeHistory: document.getElementById('close-history'),
+      historyContent: document.getElementById('history-content')
     };
 
-    // Load saved theme
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.body.setAttribute('data-theme', savedTheme);
     this.elements.themeToggle.textContent = savedTheme === 'light' ? '🌙' : '☀️';
 
-    // Event listeners
     this.elements.startQuiz.addEventListener('click', () => this.startQuiz());
     this.elements.closeQuiz.addEventListener('click', () => this.closeQuiz());
     this.elements.themeToggle.addEventListener('click', () => this.toggleTheme());
+    this.elements.historyBtn.addEventListener('click', () => this.showHistory());
+    this.elements.closeHistory.addEventListener('click', () => this.closeHistory());
   }
 
   startQuiz() {
@@ -69,7 +75,10 @@ class StyleExplorer {
     this.role = null;
     this.answers = { traits: {} };
     this.scores = {};
+    this.showDashboard = false;
+    this.showBreakdown = false;
     this.elements.quizModal.style.display = 'flex';
+    this.elements.historyModal.style.display = 'none';
     this.renderStep();
   }
 
@@ -125,7 +134,7 @@ class StyleExplorer {
         html = `
           <p>${trait.question}</p>
           <input type="range" min="1" max="10" value="${value}" class="trait-slider" 
-                 oninput="styleExplorer.setTrait('${trait.name}', this.value)">
+                 oninput="styleExplorer.setTrait('${trait.name}', this.value)" aria-label="${trait.question}">
           <div class="slider-label">${trait.label}</div>
           <div>
             <button class="btn btn-primary" onclick="styleExplorer.nextStep()">Next</button>
@@ -145,7 +154,16 @@ class StyleExplorer {
             <h3>Tips:</h3>
             <ul>${details.tips.map(tip => `<li>${tip}</li>`).join('')}</ul>
             <div>
+              <button class="btn btn-primary" onclick="styleExplorer.saveResult()">Save Result</button>
               <button class="btn btn-primary" onclick="styleExplorer.startQuiz()">Restart</button>
+              <button class="btn" onclick="styleExplorer.toggleDashboard()">View Detailed Results</button>
+            </div>
+            <div id="result-dashboard" class="dashboard" style="display: ${this.showDashboard ? 'block' : 'none'};">
+              ${this.renderDashboard()}
+              <button class="btn" onclick="styleExplorer.toggleBreakdown()">Trait Breakdown</button>
+              <div id="trait-breakdown" class="trait-breakdown" style="display: ${this.showBreakdown ? 'block' : 'none'};">
+                ${this.renderBreakdown(topStyle)}
+              </div>
             </div>
           </div>
         `;
@@ -180,6 +198,7 @@ class StyleExplorer {
 
   calculateResult() {
     const scores = {};
+    const traitContributions = {};
     this.styles[this.role].forEach(style => scores[style] = 0);
 
     const styleTraits = {
@@ -197,26 +216,124 @@ class StyleExplorer {
 
     Object.entries(this.answers.traits).forEach(([trait, value]) => {
       this.styles[this.role].forEach(style => {
-        if (styleTraits[style].includes(trait)) {
-          scores[style] += value * 2;
-        } else {
-          scores[style] += value;
-        }
+        const weight = styleTraits[style].includes(trait) ? 2 : 1;
+        scores[style] += value * weight;
+        if (!traitContributions[style]) traitContributions[style] = {};
+        traitContributions[style][trait] = (traitContributions[style][trait] || 0) + value * weight;
       });
     });
 
     const totalQuestions = Object.keys(this.answers.traits).length;
+    const maxScore = totalQuestions * 20; 
     Object.keys(scores).forEach(style => {
-      scores[style] = (scores[style] / (totalQuestions * 20)) * 100;
+      scores[style] = (scores[style] / maxScore) * 100;
+      Object.keys(traitContributions[style]).forEach(trait => {
+        traitContributions[style][trait] = (traitContributions[style][trait] / maxScore) * 100;
+      });
     });
 
     this.scores = scores;
+    this.traitContributions = traitContributions;
     return Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+  }
+
+  renderDashboard() {
+    const sortedScores = Object.entries(this.scores).sort((a, b) => b[1] - a[1]);
+    return sortedScores.map(([style, score]) => `
+      <div class="dashboard-item">
+        <span>${style}</span>
+        <div class="score-bar"><div class="score-bar-fill" style="width: ${score}%"></div></div>
+        <span class="score-value">${score.toFixed(1)}%</span>
+      </div>
+    `).join('');
+  }
+
+  renderBreakdown(topStyle) {
+    const contributions = this.traitContributions[topStyle] || {};
+    return Object.entries(contributions).map(([trait, contribution]) => `
+      <div class="trait-item">
+        <span>${trait.charAt(0).toUpperCase() + trait.slice(1)}</span>
+        <div class="trait-bar"><div class="trait-bar-fill" style="width: ${contribution}%"></div></div>
+        <span class="trait-value">${contribution.toFixed(1)}%</span>
+      </div>
+    `).join('');
+  }
+
+  toggleDashboard() {
+    this.showDashboard = !this.showDashboard;
+    this.showBreakdown = false; 
+    this.renderStep();
+  }
+
+  toggleBreakdown() {
+    this.showBreakdown = !this.showBreakdown;
+    this.renderStep();
+  }
+
+  saveResult() {
+    const topStyle = Object.entries(this.scores).sort((a, b) => b[1] - a[1])[0][0];
+    const result = {
+      topStyle,
+      scores: this.scores,
+      role: this.role,
+      timestamp: new Date().toLocaleString(),
+      traits: this.answers.traits
+    };
+    const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
+    history.push(result);
+    localStorage.setItem('quizHistory', JSON.stringify(history));
+    this.showFeedback('Result saved!');
+  }
+
+  showHistory() {
+    this.elements.historyModal.style.display = 'flex';
+    const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
+    let html = history.length ? '' : '<p>No past results found.</p>';
+    history.forEach((result, index) => {
+      html += `
+        <div class="history-item">
+          <span>${result.timestamp}: ${result.topStyle} (${result.role})</span>
+          <div>
+            <button class="btn" onclick="styleExplorer.viewResult(${index})">View</button>
+            <button class="btn" onclick="styleExplorer.deleteResult(${index})">Delete</button>
+          </div>
+        </div>
+      `;
+    });
+    this.elements.historyContent.innerHTML = html;
+  }
+
+  closeHistory() {
+    this.elements.historyModal.style.display = 'none';
+  }
+
+  viewResult(index) {
+    const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
+    const result = history[index];
+    if (!result) return;
+    this.role = result.role;
+    this.scores = result.scores;
+    this.answers.traits = result.traits;
+    this.currentStep = this.getSteps().length - 1; 
+    this.quizActive = true;
+    this.showDashboard = true; 
+    this.elements.quizModal.style.display = 'flex';
+    this.elements.historyModal.style.display = 'none';
+    this.renderStep();
+  }
+
+  deleteResult(index) {
+    const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
+    history.splice(index, 1);
+    localStorage.setItem('quizHistory', JSON.stringify(history));
+    this.showHistory();
+    this.showFeedback('Result deleted!');
   }
 
   showFeedback(message) {
     this.elements.feedback.textContent = message;
     this.elements.feedback.classList.add('feedback');
+    this.elements.feedback.setAttribute('aria-live', 'polite');
     setTimeout(() => this.elements.feedback.classList.remove('feedback'), 500);
   }
 }
