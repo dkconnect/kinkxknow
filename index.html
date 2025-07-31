@@ -1,62 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kink X Know</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="images/BDSM-removebg-preview.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kink X Know</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/kinkxknow.png">
 </head>
 <body data-theme="light">
-  <main class="container">
-    <header class="header">
-      <h1>Kink X Know</h1>
-      <div>
-        <button id="theme-toggle" class="btn" aria-label="Toggle theme">🌙</button>
-        <button id="history-btn" class="btn" aria-label="View past results">Past Results</button>
-        <button id="explore-styles-btn" class="btn" aria-label="Explore styles">Explore Styles</button>
-      </div>
-    </header>
-    <section class="hero">
-      <img src="images/BDSM-removebg-preview.png" alt="Style Explorer Logo" class="hero-image">
-      <button id="start-quiz" class="btn btn-primary">Discover Your Style!</button>
-    </section>
-  </main>
-  <div id="quiz-modal" class="modal" role="dialog" aria-labelledby="quiz-title">
-    <div class="modal-content">
-      <button id="close-quiz" class="close-btn" aria-label="Close quiz">×</button>
-      <h2 id="quiz-title" class="modal-title"></h2>
-      <div id="progress-bar" class="progress-bar">
-        <div id="progress-fill" class="progress-fill"></div>
-      </div>
-      <div id="quiz-content" class="quiz-content"></div>
-      <div id="quiz-feedback" class="feedback"></div>
+    <main class="main-layout">
+        <button id="theme-toggle" class="btn theme-toggle-btn" aria-label="Toggle theme">🌙</button>
+
+        <img src="images/kinkxknow.png" alt="Kink X Know Logo" class="kinkxknow-logo">
+        <img src="images/lips.png" alt="Lips Illustration" class="lips-image">
+        <img src="images/heels.png" alt="Heels with Rope Illustration" class="heels-image">
+        <img src="images/heels.png" alt="Hand with Rope Illustration" class="hand-image">
+        <img src="images/hug.png" alt="Hug Illustration" class="hug-image">
+
+        <div class="button-group">
+            <button id="start-quiz" class="btn btn-image-style">Discover Your Style!</button>
+            <button id="explore-styles-btn" class="btn btn-image-style">Explore Styles</button>
+            <button id="history-btn" class="btn btn-image-style">Past Results</button>
+        </div>
+    </main>
+
+    <div id="quiz-modal" class="modal" role="dialog" aria-labelledby="quiz-title">
+        <div class="modal-content">
+            <button id="close-quiz" class="close-btn" aria-label="Close quiz">×</button>
+            <h2 id="quiz-title" class="modal-title"></h2>
+            <div id="progress-bar" class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <div id="quiz-content" class="quiz-content"></div>
+            <div id="quiz-feedback" class="feedback"></div>
+        </div>
     </div>
-  </div>
-  <div id="history-modal" class="modal" role="dialog" aria-labelledby="history-title">
-    <div class="modal-content">
-      <button id="close-history" class="close-btn" aria-label="Close history">×</button>
-      <h2 id="history-title" class="modal-title">Past Results</h2>
-      <div id="history-content" class="history-content"></div>
+    <div id="history-modal" class="modal" role="dialog" aria-labelledby="history-title">
+        <div class="modal-content">
+            <button id="close-history" class="close-btn" aria-label="Close history">×</button>
+            <h2 id="history-title" class="modal-title">Past Results</h2>
+            <div id="history-content" class="history-content"></div>
+        </div>
     </div>
-  </div>
-  <div id="styles-modal" class="modal" role="dialog" aria-labelledby="styles-title">
-    <div class="modal-content">
-      <button id="close-styles" class="close-btn" aria-label="Close styles library">×</button>
-      <h2 id="styles-title" class="modal-title">Style Library</h2>
-      <div id="styles-filter" class="styles-filter">
-        <label for="role-filter">Filter by Role:</label>
-        <select id="role-filter" aria-label="Filter styles by role">
-          <option value="all">All Styles</option>
-          <option value="submissive">Submissive</option>
-          <option value="dominant">Dominant</option>
-        </select>
-      </div>
-      <div id="styles-content" class="styles-content"></div>
+    <div id="styles-modal" class="modal" role="dialog" aria-labelledby="styles-title">
+        <div class="modal-content">
+            <button id="close-styles" class="close-btn" aria-label="Close styles library">×</button>
+            <h2 id="styles-title" class="modal-title">Style Library</h2>
+            <div id="styles-filter" class="styles-filter">
+                <label for="role-filter">Filter by Role:</label>
+                <select id="role-filter" aria-label="Filter styles by role">
+                    <option value="all">All Styles</option>
+                    <option value="submissive">Submissive</option>
+                    <option value="dominant">Dominant</option>
+                </select>
+            </div>
+            <div id="styles-content" class="styles-content"></div>
+        </div>
     </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
