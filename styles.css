@@ -6,44 +6,45 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #f99010; 
+    background: #f99010;
     color: #283141;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; 
-    position: relative; 
+    overflow: hidden;
+    position: relative;
     transition: background 0.3s ease, color 0.3s ease;
 }
 
 body[data-theme="dark"] {
-    background: #283141; 
+    background: #283141;
     color: #8f949c;
 }
 
 .main-layout {
     width: 100vw;
-    height: 100vh; 
-    position: relative; 
-    overflow: hidden; 
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
 }
 
 .theme-toggle-btn {
     position: absolute;
-    top: 20px; 
-    right: 20px;
-    z-index: 10; 
+    top: calc(20 / 1080 * 100vh);
+    right: calc(20 / 1920 * 100vw);
+    z-index: 10;
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%; 
-    width: 50px;
-    height: 50px; 
-    display: flex; 
+    border-radius: 50%;
+    width: calc(50 / 1920 * 100vw);
+    height: calc(50 / 1080 * 100vh);
+    display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem; 
-    padding: 0; 
+    font-size: 1.5rem;
+    padding: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    line-height: 1;
 }
 
 .theme-toggle-btn:hover {
@@ -61,76 +62,76 @@ body[data-theme="dark"] .theme-toggle-btn:hover {
 
 .kinkxknow-logo {
     position: absolute;
-    top: 5%;
-    left: 5%;
-    width: 40%;
-    max-width: 400px;
+    width: calc(814 / 1920 * 100vw);
     height: auto;
+    top: calc(100 / 1080 * 100vh);
+    left: calc(100 / 1920 * 100vw);
     z-index: 2;
 }
 
 .lips-image {
     position: absolute;
-    top: 25%;
-    left: 45%;
-    width: 30%;
-    max-width: 300px;
+    width: calc(586 / 1920 * 100vw);
     height: auto;
+    top: calc(270 / 1080 * 100vh);
+    left: calc(850 / 1920 * 100vw);
     z-index: 1;
 }
 
 .heels-image {
     position: absolute;
-    top: 0%;
-    right: 0%;
-    width: 25%;
-    max-width: 250px;
+    width: calc(338 / 1920 * 100vw);
     height: auto;
+    top: calc(0 / 1080 * 100vh);
+    right: calc(0 / 1920 * 100vw);
     z-index: 1;
 }
 
 .hand-image {
     position: absolute;
-    bottom: 5%;
-    left: 30%;
-    width: 20%;
-    max-width: 200px;
+    width: calc(532 / 1920 * 100vw);
     height: auto;
+    bottom: calc(0 / 1080 * 100vh);
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1;
 }
 
 .hug-image {
     position: absolute;
-    bottom: 5%;
-    right: 5%;
-    width: 30%;
-    max-width: 300px;
+    width: calc(519 / 1920 * 100vw);
     height: auto;
+    bottom: calc(0 / 1080 * 100vh);
+    right: calc(129 / 1920 * 100vw);
     z-index: 1;
 }
 
 .button-group {
     position: absolute;
-    top: 40%;
-    left: 10%;
+    top: calc(400 / 1080 * 100vh);
+    left: calc(120 / 1920 * 100vw);
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: calc(30 / 1080 * 100vh);
     z-index: 3;
 }
 
 .btn-image-style {
-    background: #1f00af; 
+    background: #1f00af;
     color: white;
     border: none;
-    padding: 15px 30px;
+    width: calc(503 / 1920 * 100vw);
+    padding: calc(30 / 1080 * 100vh) calc(20 / 1920 * 100vw);
     border-radius: 8px;
-    font-size: 1.2rem;
+    font-size: calc(24 / 1920 * 100vw);
+    line-height: 1.2;
     cursor: pointer;
     transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     text-transform: uppercase;
     font-weight: 600;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    white-space: nowrap;
 }
 
 .btn-image-style:hover {
@@ -532,6 +533,43 @@ body[data-theme="dark"] .style-card:hover {
     }
 }
 
+@media (max-width: 1200px) {
+    .kinkxknow-logo {
+        width: calc(814 / 1920 * 100vw * 1.2);
+        top: calc(50 / 1080 * 100vh);
+        left: calc(50 / 1920 * 100vw);
+    }
+    .lips-image {
+        width: calc(586 / 1920 * 100vw * 1.2);
+        top: calc(250 / 1080 * 100vh);
+        left: calc(700 / 1920 * 100vw);
+    }
+    .heels-image {
+        width: calc(338 / 1920 * 100vw * 1.2);
+        top: calc(20 / 1080 * 100vh);
+        right: calc(20 / 1920 * 100vw);
+    }
+    .hand-image {
+        width: calc(532 / 1920 * 100vw * 0.9);
+        bottom: calc(20 / 1080 * 100vh);
+    }
+    .hug-image {
+        width: calc(519 / 1920 * 100vw * 0.9);
+        bottom: calc(20 / 1080 * 100vh);
+        right: calc(50 / 1920 * 100vw);
+    }
+    .button-group {
+        top: calc(350 / 1080 * 100vh);
+        left: calc(80 / 1920 * 100vw);
+        gap: calc(20 / 1080 * 100vh);
+    }
+    .btn-image-style {
+        width: calc(503 / 1920 * 100vw * 0.9);
+        font-size: calc(20 / 1920 * 100vw);
+        padding: calc(25 / 1080 * 100vh) calc(15 / 1920 * 100vw);
+    }
+}
+
 @media (max-width: 768px) {
     .theme-toggle-btn {
         top: 10px;
@@ -580,6 +618,15 @@ body[data-theme="dark"] .style-card:hover {
     .btn-image-style {
         padding: 12px 25px;
         font-size: 1rem;
+    }
+
+    .modal-content {
+        width: 90%;
+        padding: 1.5rem;
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
     }
 }
 
