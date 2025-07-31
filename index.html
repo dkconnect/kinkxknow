@@ -13,12 +13,13 @@
     <header class="header">
       <h1>Kink X Know</h1>
       <div>
-        <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <button id="theme-toggle" class="btn" aria-label="Toggle theme">🌙</button>
         <button id="history-btn" class="btn" aria-label="View past results">Past Results</button>
+        <button id="explore-styles-btn" class="btn" aria-label="Explore styles">Explore Styles</button>
       </div>
     </header>
     <section class="hero">
-      <img src="images/BDSM-removebg-preview.png" alt="kinkxknow" class="hero-image">
+      <img src="images/BDSM-removebg-preview.png" alt="Style Explorer Logo" class="hero-image">
       <button id="start-quiz" class="btn btn-primary">Discover Your Style!</button>
     </section>
   </main>
@@ -38,6 +39,21 @@
       <button id="close-history" class="close-btn" aria-label="Close history">×</button>
       <h2 id="history-title" class="modal-title">Past Results</h2>
       <div id="history-content" class="history-content"></div>
+    </div>
+  </div>
+  <div id="styles-modal" class="modal" role="dialog" aria-labelledby="styles-title">
+    <div class="modal-content">
+      <button id="close-styles" class="close-btn" aria-label="Close styles library">×</button>
+      <h2 id="styles-title" class="modal-title">Style Library</h2>
+      <div id="styles-filter" class="styles-filter">
+        <label for="role-filter">Filter by Role:</label>
+        <select id="role-filter" aria-label="Filter styles by role">
+          <option value="all">All Styles</option>
+          <option value="submissive">Submissive</option>
+          <option value="dominant">Dominant</option>
+        </select>
+      </div>
+      <div id="styles-content" class="styles-content"></div>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
