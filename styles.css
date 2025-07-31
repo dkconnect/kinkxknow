@@ -23,27 +23,30 @@ body[data-theme="dark"] {
 }
 
 .main-layout {
-    width: 100vw;
-    height: 100vh;
+    width: 1920px;
+    height: 1080px;
     position: relative;
     overflow: hidden;
+    transform-origin: top left;
+    transform: scale(min(1, 100vw / 1920, 100vh / 1080));
+    margin: auto;
 }
 
 .theme-toggle-btn {
     position: absolute;
-    top: calc(20 / 1080 * 100vh);
-    right: calc(20 / 1920 * 100vw);
+    top: 15px; 
+    right: 15px; 
     z-index: 10;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    width: calc(50 / 1920 * 100vw);
-    height: calc(50 / 1080 * 100vh);
+    width: 37.5px; 
+    height: 37.5px; 
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.125rem; 
     padding: 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1.5px 3.75px rgba(0, 0, 0, 0.2);
     line-height: 1;
 }
 
@@ -62,36 +65,37 @@ body[data-theme="dark"] .theme-toggle-btn:hover {
 
 .kinkxknow-logo {
     position: absolute;
-    width: calc(814 / 1920 * 100vw);
-    height: auto;
-    top: calc(100 / 1080 * 100vh);
-    left: calc(100 / 1920 * 100vw);
+    width: 610.5px; 
+    height: 336px; 
+    top: 75px; 
+    left: 75px; 
     z-index: 2;
 }
 
 .lips-image {
     position: absolute;
-    width: calc(586 / 1920 * 100vw);
-    height: auto;
-    top: calc(270 / 1080 * 100vh);
-    left: calc(850 / 1920 * 100vw);
+    width: 439.5px; 
+    height: 297px; 
+    top: 40%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
     z-index: 1;
 }
 
 .heels-image {
     position: absolute;
-    width: calc(338 / 1920 * 100vw);
-    height: auto;
-    top: calc(0 / 1080 * 100vh);
-    right: calc(0 / 1920 * 100vw);
+    width: 253.5px; 
+    height: 393px; 
+    top: 0px;
+    right: 0px;
     z-index: 1;
 }
 
 .hand-image {
     position: absolute;
-    width: calc(532 / 1920 * 100vw);
-    height: auto;
-    bottom: calc(0 / 1080 * 100vh);
+    width: 399px; 
+    height: 310.5px; 
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
@@ -99,20 +103,20 @@ body[data-theme="dark"] .theme-toggle-btn:hover {
 
 .hug-image {
     position: absolute;
-    width: calc(519 / 1920 * 100vw);
-    height: auto;
-    bottom: calc(0 / 1080 * 100vh);
-    right: calc(129 / 1920 * 100vw);
+    width: 389.25px;
+    height: 384px; 
+    bottom: 0px;
+    right: 96.75px; 
     z-index: 1;
 }
 
 .button-group {
     position: absolute;
-    top: calc(400 / 1080 * 100vh);
-    left: calc(120 / 1920 * 100vw);
+    top: 600px; 
+    left: 90px; 
     display: flex;
     flex-direction: column;
-    gap: calc(30 / 1080 * 100vh);
+    gap: 22.5px; 
     z-index: 3;
 }
 
@@ -120,40 +124,41 @@ body[data-theme="dark"] .theme-toggle-btn:hover {
     background: #1f00af;
     color: white;
     border: none;
-    width: calc(503 / 1920 * 100vw);
-    padding: calc(30 / 1080 * 100vh) calc(20 / 1920 * 100vw);
-    border-radius: 8px;
-    font-size: calc(24 / 1920 * 100vw);
-    line-height: 1.2;
+    width: 377.25px; 
+    height: 102.75px; 
+    padding: 0;
+    border-radius: 6px; 
+    font-size: 18px; 
+    line-height: 102.75px; 
+    text-align: center;
     cursor: pointer;
     transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     text-transform: uppercase;
     font-weight: 600;
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
-    text-align: center;
+    box-shadow: 2.25px 2.25px 6px rgba(0, 0, 0, 0.3); 
     white-space: nowrap;
 }
 
 .btn-image-style:hover {
     background: #1A00B3;
-    transform: translateY(-3px);
-    box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2.25px); 
+    box-shadow: 3.75px 3.75px 9px rgba(0, 0, 0, 0.4); 
 }
 
 .btn {
     background: #000000;
     color: white;
     border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 1rem;
+    padding: 9px 18px; 
+    border-radius: 6px; 
+    font-size: 0.75rem; 
     cursor: pointer;
     transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .btn:hover {
     background: #000000;
-    transform: translateY(-2px);
+    transform: translateY(-1.5px);
 }
 
 .btn-primary {
@@ -179,12 +184,12 @@ body[data-theme="dark"] .theme-toggle-btn:hover {
 
 .modal-content {
     background: rgba(255, 255, 255, 0.95);
-    padding: 2rem;
-    border-radius: 12px;
+    padding: 1.5rem; 
+    border-radius: 9px; 
     max-width: 90%;
-    width: 600px;
+    width: 450px; 
     position: relative;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
     animation: slideIn 0.3s ease;
 }
 
@@ -194,11 +199,11 @@ body[data-theme="dark"] .modal-content {
 
 .close-btn {
     position: absolute;
-    top: 10px;
-    right: 15px;
+    top: 7.5px; 
+    right: 11.25px; 
     background: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.125rem; 
     color: #FF6F61;
     cursor: pointer;
 }
@@ -208,10 +213,10 @@ body[data-theme="dark"] .modal-content {
 }
 
 .progress-bar {
-    height: 8px;
+    height: 6px; 
     background: #DDE4EE;
-    border-radius: 4px;
-    margin: 1rem 0;
+    border-radius: 3px; 
+    margin: 0.75rem 0;
     overflow: hidden;
 }
 
@@ -231,34 +236,34 @@ body[data-theme="dark"] .progress-fill {
 }
 
 .quiz-content {
-    margin: 1.5rem 0;
+    margin: 1.125rem 0; 
 }
 
 .quiz-content h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem; 
     color: #FF6F61;
 }
 
 .quiz-content p {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem; 
 }
 
 .trait-slider {
     width: 100%;
-    max-width: 400px;
-    margin: 1rem auto;
+    max-width: 300px; 
+    margin: 0.75rem auto;
     -webkit-appearance: none;
-    height: 10px;
+    height: 7.5px; 
     background: #DDE4EE;
-    border-radius: 5px;
+    border-radius: 3.75px; 
     outline: none;
 }
 
 .trait-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 15px; 
+    height: 15px; 
     background: #FF6F61;
     border-radius: 50%;
     cursor: pointer;
@@ -274,9 +279,9 @@ body[data-theme="dark"] .trait-slider {
 }
 
 .slider-label {
-    font-size: 0.9rem;
+    font-size: 0.675rem; 
     color: #2A3C5F;
-    margin-top: 0.5rem;
+    margin-top: 0.375rem;
 }
 
 body[data-theme="dark"] .slider-label {
@@ -284,9 +289,9 @@ body[data-theme="dark"] .slider-label {
 }
 
 .feedback {
-    font-size: 0.9rem;
+    font-size: 0.675rem; 
     color: #FF6F61;
-    margin-top: 1rem;
+    margin-top: 0.75rem; 
     animation: bounce 0.5s ease;
 }
 
@@ -296,20 +301,20 @@ body[data-theme="dark"] .slider-label {
 
 .result-section h3 {
     color: #2EC4B6;
-    margin: 1rem 0 0.5rem;
+    margin: 0.75rem 0 0.375rem; 
 }
 
 .result-section ul {
     list-style: disc;
-    padding-left: 1.5rem;
+    padding-left: 1.125rem; 
 }
 
 .dashboard {
-    margin-top: 1.5rem;
-    padding: 1rem;
+    margin-top: 1.125rem; 
+    padding: 0.75rem; 
     background: rgba(255, 255, 255, 0.9);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 6px; 
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); 
     animation: slideIn 0.3s ease;
 }
 
@@ -320,8 +325,8 @@ body[data-theme="dark"] .dashboard {
 .dashboard-item {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin: 0.5rem 0;
+    gap: 0.75rem; 
+    margin: 0.375rem 0; 
 }
 
 .dashboard-item span {
@@ -332,9 +337,9 @@ body[data-theme="dark"] .dashboard {
 
 .score-bar {
     flex: 2;
-    height: 12px;
+    height: 9px; 
     background: #DDE4EE;
-    border-radius: 6px;
+    border-radius: 4.5px; 
     overflow: hidden;
 }
 
@@ -358,10 +363,10 @@ body[data-theme="dark"] .score-bar-fill {
 }
 
 .trait-breakdown {
-    margin-top: 1rem;
-    padding: 1rem;
+    margin-top: 0.75rem; 
+    padding: 0.75rem; 
     background: rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
+    border-radius: 6px; 
     animation: slideIn 0.3s ease;
 }
 
@@ -372,8 +377,8 @@ body[data-theme="dark"] .trait-breakdown {
 .trait-item {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin: 0.5rem 0;
+    gap: 0.75rem; 
+    margin: 0.375rem 0; 
 }
 
 .trait-item span {
@@ -383,9 +388,9 @@ body[data-theme="dark"] .trait-breakdown {
 
 .trait-bar {
     flex: 2;
-    height: 8px;
+    height: 6px; 
     background: #DDE4EE;
-    border-radius: 4px;
+    border-radius: 3px; 
     overflow: hidden;
 }
 
@@ -409,8 +414,8 @@ body[data-theme="dark"] .trait-bar-fill {
 }
 
 .history-content {
-    margin: 1.5rem 0;
-    max-height: 300px;
+    margin: 1.125rem 0; 
+    max-height: 225px; 
     overflow-y: auto;
 }
 
@@ -418,10 +423,10 @@ body[data-theme="dark"] .trait-bar-fill {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem;
-    margin: 0.5rem 0;
+    padding: 0.375rem; 
+    margin: 0.375rem 0; 
     background: rgba(255, 255, 255, 0.7);
-    border-radius: 6px;
+    border-radius: 4.5px; 
     transition: background 0.2s ease;
 }
 
@@ -442,14 +447,14 @@ body[data-theme="dark"] .history-item:hover {
 }
 
 .history-item button {
-    margin-left: 0.5rem;
+    margin-left: 0.375rem; 
 }
 
 .styles-filter {
-    margin: 1rem 0;
+    margin: 0.75rem 0; 
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem; 
 }
 
 .styles-filter label {
@@ -457,32 +462,32 @@ body[data-theme="dark"] .history-item:hover {
 }
 
 #role-filter {
-    padding: 8px;
-    border-radius: 6px;
-    border: 1px solid #DDE4EE;
+    padding: 6px; /* 8 * 0.75 */
+    border-radius: 4.5px; /* 6 * 0.75 */
+    border: 0.75px solid #DDE4EE; /* 1 * 0.75 */
     background: #FFFFFF;
     color: #2A3C5F;
-    font-size: 1rem;
+    font-size: 0.75rem; /* 1 * 0.75 */
     cursor: pointer;
 }
 
 body[data-theme="dark"] #role-filter {
-    border: 1px solid #3B4D7A;
+    border: 0.75px solid #3B4D7A; /* 1 * 0.75 */
     background: #2A3C5F;
     color: #DDE4EE;
 }
 
 .styles-content {
-    margin: 1.5rem 0;
-    max-height: 400px;
+    margin: 1.125rem 0; /* 1.5 * 0.75 */
+    max-height: 300px; /* 400 * 0.75 */
     overflow-y: auto;
 }
 
 .style-card {
-    padding: 1rem;
-    margin: 0.5rem 0;
+    padding: 0.75rem; 
+    margin: 0.375rem 0; 
     background: rgba(255, 255, 255, 0.7);
-    border-radius: 8px;
+    border-radius: 6px; 
     transition: transform 0.2s ease, background 0.2s ease;
 }
 
@@ -491,7 +496,7 @@ body[data-theme="dark"] .style-card {
 }
 
 .style-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3.75px); ]
     background: rgba(255, 255, 255, 0.9);
 }
 
@@ -501,22 +506,22 @@ body[data-theme="dark"] .style-card:hover {
 
 .style-card h3 {
     color: #FF6F61;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.375rem;
 }
 
 .style-card p {
-    margin: 0.5rem 0;
+    margin: 0.375rem 0; 
 }
 
 .style-card ul {
     list-style: disc;
-    padding-left: 1.5rem;
+    padding-left: 1.125rem; 
 }
 
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(15px); 
     }
     to {
         opacity: 1;
@@ -533,122 +538,144 @@ body[data-theme="dark"] .style-card:hover {
     }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1920px) {
+    body {
+        overflow: auto;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .main-layout {
+        width: 100vw;
+        height: 100vh;
+        transform: none;
+        display: block;
+    }
+
     .kinkxknow-logo {
-        width: calc(814 / 1920 * 100vw * 1.2);
-        top: calc(50 / 1080 * 100vh);
-        left: calc(50 / 1920 * 100vw);
+        width: calc(610.5 / 1920 * 100vw);
+        height: auto;
+        top: calc(75 / 1080 * 100vh);
+        left: calc(75 / 1920 * 100vw);
     }
+
     .lips-image {
-        width: calc(586 / 1920 * 100vw * 1.2);
-        top: calc(250 / 1080 * 100vh);
-        left: calc(700 / 1920 * 100vw);
+        width: calc(439.5 / 1920 * 100vw);
+        height: auto;
+        top: 40%; 
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
+
     .heels-image {
-        width: calc(338 / 1920 * 100vw * 1.2);
-        top: calc(20 / 1080 * 100vh);
-        right: calc(20 / 1920 * 100vw);
+        width: calc(253.5 / 1920 * 100vw);
+        height: auto;
+        top: calc(0 / 1080 * 100vh);
+        right: calc(0 / 1920 * 100vw);
     }
+
     .hand-image {
-        width: calc(532 / 1920 * 100vw * 0.9);
-        bottom: calc(20 / 1080 * 100vh);
+        width: calc(399 / 1920 * 100vw);
+        height: auto;
+        bottom: calc(0 / 1080 * 100vh);
+        left: 50%;
+        transform: translateX(-50%);
     }
+
     .hug-image {
-        width: calc(519 / 1920 * 100vw * 0.9);
-        bottom: calc(20 / 1080 * 100vh);
-        right: calc(50 / 1920 * 100vw);
+        width: calc(389.25 / 1920 * 100vw);
+        height: auto;
+        bottom: calc(0 / 1080 * 100vh);
+        right: calc(96.75 / 1920 * 100vw);
     }
+
     .button-group {
-        top: calc(350 / 1080 * 100vh);
-        left: calc(80 / 1920 * 100vw);
-        gap: calc(20 / 1080 * 100vh);
+        top: calc(600 / 1080 * 100vh); 
+        left: calc(90 / 1920 * 100vw);
+        gap: calc(22.5 / 1080 * 100vh);
     }
+
     .btn-image-style {
-        width: calc(503 / 1920 * 100vw * 0.9);
-        font-size: calc(20 / 1920 * 100vw);
-        padding: calc(25 / 1080 * 100vh) calc(15 / 1920 * 100vw);
+        width: calc(377.25 / 1920 * 100vw);
+        height: auto;
+        padding: calc(102.75 / 2 / 1080 * 100vh) calc(15 / 1920 * 100vw);
+        font-size: calc(18 / 1920 * 100vw);
+        line-height: 1.2;
+    }
+
+    .theme-toggle-btn {
+        width: calc(37.5 / 1920 * 100vw);
+        height: calc(37.5 / 1080 * 100vh);
+        font-size: calc(18 / 1920 * 100vw);
     }
 }
 
 @media (max-width: 768px) {
-    .theme-toggle-btn {
-        top: 10px;
-        right: 10px;
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-    }
-
     .kinkxknow-logo {
-        top: 2%;
-        left: 2%;
-        width: 50%;
+        width: calc(610.5 / 1920 * 100vw * 1.5);
+        top: calc(15 / 1080 * 100vh);
+        left: calc(15 / 1920 * 100vw);
     }
-
     .lips-image {
-        top: 20%;
-        left: 40%;
-        width: 40%;
+        width: calc(439.5 / 1920 * 100vw * 1.5);
+        top: 35%; 
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
-
     .heels-image {
-        top: 5%;
-        right: 0%;
-        width: 35%;
+        width: calc(253.5 / 1920 * 100vw * 1.5);
+        top: calc(0 / 1080 * 100vh);
+        right: calc(0 / 1920 * 100vw);
     }
-
     .hand-image {
-        bottom: 2%;
-        left: 20%;
-        width: 30%;
+        width: calc(399 / 1920 * 100vw * 0.8);
+        bottom: calc(15 / 1080 * 100vh);
     }
-
     .hug-image {
-        bottom: 2%;
-        right: 0%;
-        width: 40%;
+        width: calc(389.25 / 1920 * 100vw * 0.8);
+        bottom: calc(15 / 1080 * 100vh);
+        right: calc(15 / 1920 * 100vw);
     }
-
     .button-group {
-        top: 35%;
-        left: 5%;
-        gap: 1rem;
+        top: calc(450 / 1080 * 100vh); 
+        left: calc(37.5 / 1920 * 100vw);
+        gap: calc(11.25 / 1080 * 100vh);
     }
-
     .btn-image-style {
-        padding: 12px 25px;
-        font-size: 1rem;
+        width: calc(377.25 / 1920 * 100vw * 0.8);
+        font-size: calc(13.5 / 1920 * 100vw);
+        padding: calc(15 / 1080 * 100vh) calc(7.5 / 1920 * 100vw);
     }
 
     .modal-content {
         width: 90%;
-        padding: 1.5rem;
+        padding: 1.125rem;
     }
     .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+        padding: 7.5px 15px;
+        font-size: 0.675rem;
     }
 }
 
 @media (max-width: 480px) {
     .modal-content {
         width: 95%;
-        padding: 1.5rem;
+        padding: 1.125rem;
     }
 
     .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+        padding: 7.5px 15px;
+        font-size: 0.675rem;
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .history-item, .style-card {
         flex-direction: column;
         align-items: flex-start;
-        gap: 0.5rem;
+        gap: 0.375rem;
     }
 
     .history-item button {
@@ -661,51 +688,51 @@ body[data-theme="dark"] .style-card:hover {
     }
 
     .theme-toggle-btn {
-        top: 5px;
-        right: 5px;
-        width: 35px;
-        height: 35px;
-        font-size: 1rem;
+        top: 3.75px;
+        right: 3.75px;
+        width: 26.25px;
+        height: 26.25px;
+        font-size: 0.75rem;
     }
 
     .kinkxknow-logo {
-        top: 1%;
-        left: 1%;
-        width: 60%;
+        width: calc(610.5 / 1920 * 100vw * 1.8);
+        top: calc(7.5 / 1080 * 100vh);
+        left: calc(7.5 / 1920 * 100vw);
     }
 
     .lips-image {
-        top: 15%;
-        left: 30%;
-        width: 50%;
+        width: calc(439.5 / 1920 * 100vw * 1.8);
+        top: 30%; 
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .heels-image {
-        top: 2%;
-        right: -5%;
-        width: 40%;
+        width: calc(253.5 / 1920 * 100vw * 1.8);
+        top: calc(1.5 / 1080 * 100vh);
+        right: calc(-37.5 / 1920 * 100vw);
     }
 
     .hand-image {
-        bottom: 1%;
-        left: 10%;
-        width: 40%;
+        width: calc(399 / 1920 * 100vw * 0.7);
+        bottom: calc(0.75 / 1080 * 100vh);
     }
 
     .hug-image {
-        bottom: 1%;
-        right: -5%;
-        width: 50%;
+        width: calc(389.25 / 1920 * 100vw * 0.7);
+        bottom: calc(0.75 / 1080 * 100vh);
+        right: calc(-37.5 / 1920 * 100vw);
     }
 
     .button-group {
-        top: 30%;
-        left: 2%;
-        gap: 0.8rem;
+        top: calc(350 / 1080 * 100vh); 
+        left: calc(15 / 1920 * 100vw);
+        gap: calc(7.5 / 1080 * 100vh);
     }
 
     .btn-image-style {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+        padding: 7.5px 15px;
+        font-size: 0.675rem;
     }
 }
