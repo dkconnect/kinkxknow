@@ -6,7 +6,9 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: #F4F7FA;
+  background: linear-gradient(45deg, #F4F7FA, #E8F0FE, #FFE6E2);
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
   color: #2A3C5F;
   min-height: 100vh;
   display: flex;
@@ -16,7 +18,7 @@ body {
 }
 
 body[data-theme="dark"] {
-  background: #1E2A44;
+  background: linear-gradient(45deg, #1E2A44, #2A3C5F, #4A2E3B);
   color: #DDE4EE;
 }
 
@@ -45,7 +47,6 @@ h1 {
   margin-bottom: 1.5rem;
 }
 
-/* Buttons */
 .btn {
   background: #2EC4B6;
   color: white;
@@ -84,18 +85,18 @@ h1 {
 }
 
 .modal-content {
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.95);
   padding: 2rem;
   border-radius: 12px;
   max-width: 90%;
   width: 500px;
   position: relative;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 0.3s ease;
+  animation: slideIn 0.3s ease;
 }
 
 body[data-theme="dark"] .modal-content {
-  background: #2A3C5F;
+  background: rgba(42, 60, 95, 0.95);
 }
 
 .close-btn {
@@ -210,7 +211,148 @@ body[data-theme="dark"] .slider-label {
   padding-left: 1.5rem;
 }
 
-@keyframes fadeIn {
+.dashboard {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease;
+}
+
+body[data-theme="dark"] .dashboard {
+  background: rgba(30, 42, 68, 0.9);
+}
+
+.dashboard-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.5rem 0;
+}
+
+.dashboard-item span {
+  flex: 1;
+  text-align: left;
+  font-weight: 600;
+}
+
+.score-bar {
+  flex: 2;
+  height: 12px;
+  background: #DDE4EE;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  background: #2EC4B6;
+  transition: width 0.5s ease;
+}
+
+body[data-theme="dark"] .score-bar {
+  background: #3B4D7A;
+}
+
+body[data-theme="dark"] .score-bar-fill {
+  background: #1A8C7F;
+}
+
+.score-value {
+  flex: 0.5;
+  text-align: right;
+}
+
+.trait-breakdown {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  animation: slideIn 0.3s ease;
+}
+
+body[data-theme="dark"] .trait-breakdown {
+  background: rgba(30, 42, 68, 0.8);
+}
+
+.trait-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.5rem 0;
+}
+
+.trait-item span {
+  flex: 1;
+  text-align: left;
+}
+
+.trait-bar {
+  flex: 2;
+  height: 8px;
+  background: #DDE4EE;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.trait-bar-fill {
+  height: 100%;
+  background: #FF6F61;
+  transition: width 0.5s ease;
+}
+
+body[data-theme="dark"] .trait-bar {
+  background: #3B4D7A;
+}
+
+body[data-theme="dark"] .trait-bar-fill {
+  background: #E55A50;
+}
+
+.trait-value {
+  flex: 0.5;
+  text-align: right;
+}
+
+.history-content {
+  margin: 1.5rem 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+body[data-theme="dark"] .history-item {
+  background: rgba(42, 60, 95, 0.7);
+}
+
+.history-item:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+body[data-theme="dark"] .history-item:hover {
+  background: rgba(42, 60, 95, 0.9);
+}
+
+.history-item span {
+  flex: 1;
+}
+
+.history-item button {
+  margin-left: 0.5rem;
+}
+
+@keyframes slideIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
@@ -220,6 +362,13 @@ body[data-theme="dark"] .slider-label {
   50% { transform: scale(1.05); }
 }
 
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Responsive Design */
 @media (max-width: 480px) {
   .modal-content {
     width: 95%;
@@ -237,5 +386,15 @@ body[data-theme="dark"] .slider-label {
 
   h1 {
     font-size: 2rem;
+  }
+
+  .history-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .history-item button {
+    margin-left: 0;
   }
 }
