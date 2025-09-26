@@ -1,396 +1,443 @@
 class StyleExplorer {
-  constructor() {
-    this.quizActive = false;
-    this.currentStep = 0;
-    this.role = null;
-    this.answers = { traits: {} };
-    this.scores = {};
-    this.showDashboard = false;
-    this.showBreakdown = false;
-    this.traits = {
-      submissive: [
-        { name: 'obedience', question: 'How much do you enjoy following guidance?', label: '1: Prefer freedom / 10: Love obeying' },
-        { name: 'playfulness', question: 'Do you love playful, lighthearted fun?', label: '1: Serious / 10: Very playful' },
-        { name: 'affection', question: 'How much do you crave closeness and cuddles?', label: '1: Distant / 10: Very affectionate' },
-        { name: 'exploration', question: 'Are you excited by trying new experiences?', label: '1: Stick to known / 10: Love adventure' },
-        { name: 'vulnerability', question: 'Do you enjoy opening up emotionally?', label: '1: Guarded / 10: Very open' },
-        { name: 'trust', question: 'How much do you rely on your partner’s guidance?', label: '1: Independent / 10: Fully trusting' },
-        { name: 'service', question: 'Do you enjoy performing tasks for your partner?', label: '1: Dislike tasks / 10: Love serving' },
-        { name: 'surrender', question: 'How comfortable are you relinquishing control?', label: '1: Need control / 10: Love surrendering' }
-      ],
-      dominant: [
-        { name: 'authority', question: 'Do you feel strong taking charge?', label: '1: Gentle / 10: Very commanding' },
-        { name: 'care', question: 'Do you love nurturing others?', label: '1: Detached / 10: Very caring' },
-        { name: 'control', question: 'Do you thrive on directing situations?', label: '1: Hands-off / 10: Full control' },
-        { name: 'confidence', question: 'Are you sure in your decisions?', label: '1: Hesitant / 10: Very confident' },
-        { name: 'creativity', question: 'Do you enjoy crafting unique experiences?', label: '1: Routine / 10: Very creative' },
-        { name: 'leadership', question: 'Do you enjoy guiding others in decisions?', label: '1: Collaborative / 10: Strong leader' },
-        { name: 'protection', question: 'Do you prioritize your partner’s safety and comfort?', label: '1: Minimal focus / 10: Very protective' },
-        { name: 'discipline', question: 'Do you enjoy enforcing rules or structure?', label: '1: Lenient / 10: Strict disciplinarian' }
-      ]
-    };
-    this.styles = {
-      submissive: ['Submissive', 'Brat', 'Little', 'Pet', 'Rope Bunny'],
-      dominant: ['Dominant', 'Nurturer', 'Master', 'Rigger', 'Caretaker']
-    };
-    this.styleDetails = {
-      Submissive: { desc: 'You find peace in yielding to guidance.', match: 'Dominant', tips: ['Set clear boundaries.', 'Communicate openly.'] },
-      Brat: { desc: 'You love playful resistance and teasing.', match: 'Disciplinarian', tips: ['Keep it fun.', 'Ensure consent.'] },
-      Little: { desc: 'You embrace a carefree, nurtured role.', match: 'Caretaker', tips: ['Find a nurturing partner.', 'Explore safely.'] },
-      Pet: { desc: 'You thrive on affection and play.', match: 'Owner', tips: ['Enjoy your role.', 'Seek a caring dynamic.'] },
-      'Rope Bunny': { desc: 'You love the art of being bound.', match: 'Rigger', tips: ['Learn safety.', 'Pair with a skilled partner.'] },
-      Dominant: { desc: 'You shine when leading with confidence.', match: 'Submissive', tips: ['Listen to your partner.', 'Balance control with care.'] },
-      Nurturer: { desc: 'You guide with warmth and support.', match: 'Little', tips: ['Be patient.', 'Foster trust.'] },
-      Master: { desc: 'You lead with authority and responsibility.', match: 'Slave', tips: ['Negotiate clearly.', 'Build trust.'] },
-      Rigger: { desc: 'You create art through restraint.', match: 'Rope Bunny', tips: ['Study bondage safety.', 'Practice precision.'] },
-      Caretaker: { desc: 'You nurture with love and structure.', match: 'Little', tips: ['Be consistent.', 'Encourage growth.'] }
-    };
-    this.init();
-  }
+    constructor() {
+        this.quizActive = false;
+        this.currentStep = 0;
+        this.answers = {}; 
+        this.scores = {}; 
+        this.showDashboard = false;
+        this.showBreakdown = false;
 
-  init() {
-    this.elements = {
-      startQuiz: document.getElementById('start-quiz'),
-      quizModal: document.getElementById('quiz-modal'),
-      closeQuiz: document.getElementById('close-quiz'),
-      quizTitle: document.getElementById('quiz-title'),
-      progressBar: document.getElementById('progress-fill'),
-      quizContent: document.getElementById('quiz-content'),
-      feedback: document.getElementById('quiz-feedback'),
-      themeToggle: document.getElementById('theme-toggle'),
-      historyBtn: document.getElementById('history-btn'),
-      historyModal: document.getElementById('history-modal'),
-      closeHistory: document.getElementById('close-history'),
-      historyContent: document.getElementById('history-content'),
-      exploreStylesBtn: document.getElementById('explore-styles-btn'),
-      stylesModal: document.getElementById('styles-modal'),
-      closeStyles: document.getElementById('close-styles'),
-      stylesContent: document.getElementById('styles-content'),
-      roleFilter: document.getElementById('role-filter')
-    };
+        this.styles = {
+            submissive: ['Submissive', 'Brat', 'Little', 'Pet', 'Rope Bunny'],
+            dominant: ['Dominant', 'Nurturer', 'Master', 'Rigger', 'Caretaker', 'Disciplinarian']
+        };
+        this.styleDetails = {
+            Submissive: { desc: 'You find peace in yielding to guidance and appreciate structure.', match: 'Dominant/Master', tips: ['Set clear boundaries.', 'Communicate openly.'] },
+            Brat: { desc: 'You love playful resistance and teasing—a perfect foil for a firm leader.', match: 'Disciplinarian', tips: ['Keep it fun but respect hard limits.', 'Ensure consent.'] },
+            Little: { desc: 'You embrace a carefree, nurtured role, craving affection and protection.', match: 'Caretaker/Nurturer', tips: ['Find a nurturing partner.', 'Explore safely.'] },
+            Pet: { desc: 'You thrive on affection, play, and often physical touch and ownership symbols.', match: 'Owner/Master', tips: ['Enjoy your role.', 'Seek a caring dynamic.'] },
+            'Rope Bunny': { desc: 'You love the art and sensation of being physically bound and restrained.', match: 'Rigger', tips: ['Learn safety and nerve awareness.', 'Pair with a skilled Rigger.'] },
+            Dominant: { desc: 'You shine when leading with confidence, preferring control and clear expectations.', match: 'Submissive', tips: ['Listen to your partner.', 'Balance control with care.'] },
+            Nurturer: { desc: 'You guide with warmth, support, and a focus on safety and emotional connection.', match: 'Little', tips: ['Be patient.', 'Foster deep trust.'] },
+            Master: { desc: 'You lead with authority and responsibility, often valuing commitment and structure.', match: 'Slave/Submissive', tips: ['Negotiate clearly.', 'Build trust and commitment.'] },
+            Rigger: { desc: 'You create art through restraint, valuing technical skill and sensory experience.', match: 'Rope Bunny', tips: ['Study bondage safety meticulously.', 'Practice precision.'] },
+            Caretaker: { desc: 'You nurture with love and structure, focusing on a partner\'s comfort and well-being.', match: 'Little', tips: ['Be consistent.', 'Encourage growth.'] },
+            Disciplinarian: { desc: 'You enjoy enforcing rules and structure, providing firm guidance and consequences.', match: 'Brat/Submissive', tips: ['Ensure clear rules are agreed upon.', 'Focus on growth and trust.'] }
+        };
+        
+        this.questions = this.getNewQuestions();
+        this.styleTraitMap = this.getStyleTraitMap();
 
-    // Load saved theme
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.body.setAttribute('data-theme', savedTheme);
-    this.elements.themeToggle.textContent = savedTheme === 'light' ? '🌙' : '☀️';
-
-    // Event listeners
-    this.elements.startQuiz.addEventListener('click', () => this.startQuiz());
-    this.elements.closeQuiz.addEventListener('click', () => this.closeQuiz());
-    this.elements.themeToggle.addEventListener('click', () => this.toggleTheme());
-    this.elements.historyBtn.addEventListener('click', () => this.showHistory());
-    this.elements.closeHistory.addEventListener('click', () => this.closeHistory());
-    this.elements.exploreStylesBtn.addEventListener('click', () => this.showStyles());
-    this.elements.closeStyles.addEventListener('click', () => this.closeStyles());
-    this.elements.roleFilter.addEventListener('change', () => this.renderStyles());
-  }
-
-  startQuiz() {
-    this.quizActive = true;
-    this.currentStep = 0;
-    this.role = null;
-    this.answers = { traits: {} };
-    this.scores = {};
-    this.showDashboard = false;
-    this.showBreakdown = false;
-    this.elements.quizModal.style.display = 'flex';
-    this.elements.historyModal.style.display = 'none';
-    this.elements.stylesModal.style.display = 'none';
-    this.renderStep();
-  }
-
-  closeQuiz() {
-    this.quizActive = false;
-    this.elements.quizModal.style.display = 'none';
-  }
-
-  toggleTheme() {
-    const currentTheme = document.body.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    document.body.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    this.elements.themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
-  }
-
-  getSteps() {
-    const steps = [{ type: 'welcome' }, { type: 'role' }];
-    if (this.role) {
-      this.traits[this.role].forEach(trait => steps.push({ type: 'trait', trait: trait.name }));
-    }
-    steps.push({ type: 'result' });
-    return steps;
-  }
-
-  renderStep() {
-    if (!this.quizActive) return;
-    const steps = this.getSteps();
-    this.currentStep = Math.min(this.currentStep, steps.length - 1);
-    const step = steps[this.currentStep];
-    this.elements.progressBar.style.width = `${((this.currentStep + 1) / steps.length) * 100}%`;
-
-    let html = '';
-    this.elements.quizTitle.textContent = step.type === 'welcome' ? 'Welcome!' : step.type === 'role' ? 'Choose Your Role' : step.type === 'trait' ? 'Explore Your Traits' : 'Your Result';
-
-    switch (step.type) {
-      case 'welcome':
-        html = `
-          <p>Embark on a journey to discover your unique style!</p>
-          <button class="btn btn-primary" onclick="styleExplorer.nextStep()">Begin</button>
-        `;
-        break;
-      case 'role':
-        html = `
-          <p>Do you lean toward guiding or being guided?</p>
-          <button class="btn" onclick="styleExplorer.setRole('submissive')">I like being guided</button>
-          <button class="btn" onclick="styleExplorer.setRole('dominant')">I like guiding</button>
-        `;
-        break;
-      case 'trait':
-        const trait = this.traits[this.role].find(t => t.name === step.trait);
-        const value = this.answers.traits[trait.name] || 5;
-        html = `
-          <p>${trait.question}</p>
-          <input type="range" min="1" max="10" value="${value}" class="trait-slider" 
-                 oninput="styleExplorer.setTrait('${trait.name}', this.value)" aria-label="${trait.question}">
-          <div class="slider-label">${trait.label}</div>
-          <div>
-            <button class="btn btn-primary" onclick="styleExplorer.nextStep()">Next</button>
-            <button class="btn" onclick="styleExplorer.prevStep()">Back</button>
-          </div>
-        `;
-        break;
-      case 'result':
-        const topStyle = this.calculateResult();
-        const details = this.styleDetails[topStyle];
-        html = `
-          <div class="result-section">
-            <h3>Your Style: ${topStyle}</h3>
-            <p>${details.desc}</p>
-            <h3>Matches With: ${details.match}</h3>
-            <p>Explore a dynamic where you complement each other perfectly.</p>
-            <h3>Tips:</h3>
-            <ul>${details.tips.map(tip => `<li>${tip}</li>`).join('')}</ul>
-            <div>
-              <button class="btn btn-primary" onclick="styleExplorer.saveResult()">Save Result</button>
-              <button class="btn btn-primary" onclick="styleExplorer.startQuiz()">Restart</button>
-              <button class="btn" onclick="styleExplorer.toggleDashboard()">View Detailed Results</button>
-            </div>
-            <div id="result-dashboard" class="dashboard" style="display: ${this.showDashboard ? 'block' : 'none'};">
-              ${this.renderDashboard()}
-              <button class="btn" onclick="styleExplorer.toggleBreakdown()">Trait Breakdown</button>
-              <div id="trait-breakdown" class="trait-breakdown" style="display: ${this.showBreakdown ? 'block' : 'none'};">
-                ${this.renderBreakdown(topStyle)}
-              </div>
-            </div>
-          </div>
-        `;
-        setTimeout(() => confetti({ particleCount: 150, spread: 80 }), 300);
-        break;
+        this.init();
     }
 
-    this.elements.quizContent.innerHTML = html;
-  }
+    getNewQuestions() {
+        return [
+        
+            { id: 'safeword', group: 'safety', text: 'How important is having a detailed Safeword system established before engaging in any scene?', label: '1: Not Important / 10: Absolutely Essential' },
+            { id: 'vulnerability', group: 'safety', text: 'On a scale of willingness, how open are you to discussing and sharing emotional vulnerabilities within the dynamic?', label: '1: Very Guarded / 10: Very Open' },
+            { id: 'checkin', group: 'safety', text: 'How crucial is it to have a "scene check-in" mechanism (e.g., stopping to ask "Are you okay?") during intense play?', label: '1: Unnecessary / 10: Mandatory' },
+            { id: 'public_ack', group: 'safety', text: 'How do you feel about publicly acknowledging the dynamic (e.g., wearing discreet collar or jewelry)?', label: '1: Must Be Private / 10: Welcome Acknowledgment' },
+            { id: 'aftercare', group: 'safety', text: 'What is your stance on "aftercare"?', label: '1: Unnecessary / 10: Absolutely Essential' },
+            
 
-  setRole(role) {
-    this.role = role;
-    this.nextStep();
-  }
+            { id: 'contract', group: 'structure', text: 'How much do you value having a written contract or set of rules for the dynamic?', label: '1: Prefer Freedom / 10: Mandatory Structure' },
+            { id: 'feedback', group: 'structure', text: 'How open are you to receiving feedback and criticism about your performance or behavior within the dynamic?', label: '1: Very Sensitive / 10: Highly Value Guidance' },
+            { id: 'dynamic_type', group: 'structure', text: 'Do you prefer a 24/7 dynamic (always "in dynamic") or a scene-based dynamic (only "in dynamic" during planned play)?', label: '1: Scene-Based / 10: 24/7 Dynamic' },
+            { id: 'autonomy', group: 'structure', text: 'How much autonomy (control over your own decisions outside of scenes) are you willing to relinquish/demand?', label: '1: Full Autonomy / 10: Willing to Relinquish/Demand Control' },
 
-  setTrait(trait, value) {
-    this.answers.traits[trait] = parseInt(value, 10);
-    this.showFeedback(`Set ${trait} to ${value}`);
-  }
+       
+            { id: 'tasking', group: 'control', text: 'How do you feel about Tasking (assigning chores or errands as part of the dynamic)?', label: '1: Dislike Tasks / 10: Love Assigning/Performing Tasks' },
+            { id: 'humiliation', group: 'control', text: 'How open are you to being subject to Humiliation/Degradation (verbal or non-verbal)?', label: '1: Hard Limit / 10: Very Open to Exploration' },
+            { id: 'collaring', group: 'control', text: 'How important is the use of collaring or a physical symbol to signify the commitment and ownership within the dynamic?', label: '1: Not Important / 10: Essential Symbolism' },
+            { id: 'findom', group: 'control', text: 'How willing are you to engage in Financial Domination (Findom), if any?', label: '1: Hard Limit / 10: Very Open' },
+            { id: 'ownership', group: 'control', text: 'How important is the concept of "ownership" or "property" in the dynamic?', label: '1: Do Not Like / 10: Core to Dynamic' },
 
-  nextStep() {
-    this.currentStep++;
-    this.renderStep();
-  }
+ 
+            { id: 'impact', group: 'physical', text: 'How interested are you in Impact Play (e.g., paddling, spanking, caning)?', label: '1: Not Interested / 10: Very Interested' },
+            { id: 'bondage', group: 'physical', text: 'How interested are you in Bondage (e.g., rope, cuffs, restraints)?', label: '1: Not Interested / 10: Very Interested' },
+            { id: 'sensory_deprivation', group: 'physical', text: 'How open are you to Sensory Deprivation (e.g., blindfolds, earplugs)?', label: '1: Dislike / 10: High Interest' },
+            { id: 'medical', group: 'physical', text: 'How do you feel about Medical Play/Kink (e.g., roleplaying as a patient/doctor)?', label: '1: Not Interested / 10: High Interest' },
+            { id: 'temp_play', group: 'physical', text: 'How important is Temperature Play (e.g., wax, ice)?', label: '1: Not Important / 10: Essential Sensation' },
 
-  prevStep() {
-    if (this.currentStep > 0) {
-      this.currentStep--;
-      this.renderStep();
+
+            { id: 'knife', group: 'edge', text: 'How open are you to exploring Knife Play (without contact or with dull knives)?', label: '1: Hard Limit / 10: Very Open' },
+            { id: 'breath', group: 'edge', text: 'How open are you to Breath Play/Choking (as a receiver or giver)?', label: '1: Hard Limit / 10: Very Open' },
+            { id: 'scat_uro', group: 'edge', text: 'How comfortable are you with scatological or urophilic play (water sports/waste)?', label: '1: Hard Limit / 10: Very Open' },
+            { id: 'blood', group: 'edge', text: 'How do you feel about Blood Play (e.g., consensual piercing or cutting)?', label: '1: Hard Limit / 10: Very Open' },
+            { id: 'pain_tolerance', group: 'edge', text: 'How do you feel about Pain Tolerance pushing (actively seeking or administering intense, sustained pain)?', label: '1: Dislike / 10: High Interest' },
+        ];
     }
-  }
 
-  calculateResult() {
-    const scores = {};
-    const traitContributions = {};
-    this.styles[this.role].forEach(style => scores[style] = 0);
+    getStyleTraitMap() {
+        return {
+          
+            Submissive: { safeword: +1, vulnerability: +2, checkin: +1, aftercare: +2, contract: +2, autonomy: +2, ownership: +1, feedback: +1, tasking: +2, humiliation: +1 },
+            Brat: { vulnerability: -1, feedback: -1, autonomy: -1, tasking: -1, humiliation: +2, impact: +1, dynamic_type: +1, contract: -1 }, 
+            Little: { vulnerability: +2, aftercare: +2, contract: -1, autonomy: +2, ownership: -1, medical: +2, public_ack: -1 }, 
+            Pet: { public_ack: +2, collaring: +2, ownership: +2, tasking: +1, impact: +1, bondage: +1, sensory_deprivation: +1, humiliation: +1 }, 
+            'Rope Bunny': { bondage: +2, sensory_deprivation: +2, temp_play: +1, breath: +1, pain_tolerance: +1, knife: +1, checkin: -1 }, 
 
-    const styleTraits = {
-      Submissive: ['obedience', 'vulnerability', 'trust', 'service', 'surrender'],
-      Brat: ['playfulness', 'exploration', 'trust'],
-      Little: ['affection', 'vulnerability', 'surrender'],
-      Pet: ['affection', 'playfulness', 'service'],
-      'Rope Bunny': ['exploration', 'vulnerability', 'surrender'],
-      Dominant: ['authority', 'control', 'leadership', 'discipline'],
-      Nurturer: ['care', 'confidence', 'protection'],
-      Master: ['authority', 'control', 'discipline'],
-      Rigger: ['creativity', 'control', 'leadership'],
-      Caretaker: ['care', 'confidence', 'protection']
-    };
-
-    Object.entries(this.answers.traits).forEach(([trait, value]) => {
-      this.styles[this.role].forEach(style => {
-        const weight = styleTraits[style].includes(trait) ? 2 : 1;
-        scores[style] += value * weight;
-        if (!traitContributions[style]) traitContributions[style] = {};
-        traitContributions[style][trait] = (traitContributions[style][trait] || 0) + value * weight;
-      });
-    });
-
-    const totalQuestions = Object.keys(this.answers.traits).length;
-    const maxScore = totalQuestions * 20; // Max score per style (8 traits, max 10, key traits weighted x2)
-    Object.keys(scores).forEach(style => {
-      scores[style] = (scores[style] / maxScore) * 100;
-      Object.keys(traitContributions[style]).forEach(trait => {
-        traitContributions[style][trait] = (traitContributions[style][trait] / maxScore) * 100;
-      });
-    });
-
-    this.scores = scores;
-    this.traitContributions = traitContributions;
-    return Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-  }
-
-  renderDashboard() {
-    const sortedScores = Object.entries(this.scores).sort((a, b) => b[1] - a[1]);
-    return sortedScores.map(([style, score]) => `
-      <div class="dashboard-item">
-        <span>${style}</span>
-        <div class="score-bar"><div class="score-bar-fill" style="width: ${score}%"></div></div>
-        <span class="score-value">${score.toFixed(1)}%</span>
-      </div>
-    `).join('');
-  }
-
-  renderBreakdown(topStyle) {
-    const contributions = this.traitContributions[topStyle] || {};
-    return Object.entries(contributions).map(([trait, contribution]) => `
-      <div class="trait-item">
-        <span>${trait.charAt(0).toUpperCase() + trait.slice(1)}</span>
-        <div class="trait-bar"><div class="trait-bar-fill" style="width: ${contribution}%"></div></div>
-        <span class="trait-value">${contribution.toFixed(1)}%</span>
-      </div>
-    `).join('');
-  }
-
-  toggleDashboard() {
-    this.showDashboard = !this.showDashboard;
-    this.showBreakdown = false;
-    this.renderStep();
-  }
-
-  toggleBreakdown() {
-    this.showBreakdown = !this.showBreakdown;
-    this.renderStep();
-  }
-
-  saveResult() {
-    const topStyle = Object.entries(this.scores).sort((a, b) => b[1] - a[1])[0][0];
-    const result = {
-      topStyle,
-      scores: this.scores,
-      role: this.role,
-      timestamp: new Date().toLocaleString(),
-      traits: this.answers.traits
-    };
-    const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
-    history.push(result);
-    localStorage.setItem('quizHistory', JSON.stringify(history));
-    this.showFeedback('Result saved!');
-  }
-
-  showHistory() {
-    this.elements.historyModal.style.display = 'flex';
-    this.elements.quizModal.style.display = 'none';
-    this.elements.stylesModal.style.display = 'none';
-    const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
-    let html = history.length ? '' : '<p>No past results found.</p>';
-    history.forEach((result, index) => {
-      html += `
-        <div class="history-item">
-          <span>${result.timestamp}: ${result.topStyle} (${result.role})</span>
-          <div>
-            <button class="btn" onclick="styleExplorer.viewResult(${index})">View</button>
-            <button class="btn" onclick="styleExplorer.deleteResult(${index})">Delete</button>
-          </div>
-        </div>
-      `;
-    });
-    this.elements.historyContent.innerHTML = html;
-  }
-
-  closeHistory() {
-    this.elements.historyModal.style.display = 'none';
-  }
-
-  viewResult(index) {
-    const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
-    const result = history[index];
-    if (!result) return;
-    this.role = result.role;
-    this.scores = result.scores;
-    this.answers.traits = result.traits;
-    this.currentStep = this.getSteps().length - 1;
-    this.quizActive = true;
-    this.showDashboard = true;
-    this.elements.quizModal.style.display = 'flex';
-    this.elements.historyModal.style.display = 'none';
-    this.elements.stylesModal.style.display = 'none';
-    this.renderStep();
-  }
-
-  deleteResult(index) {
-    const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
-    history.splice(index, 1);
-    localStorage.setItem('quizHistory', JSON.stringify(history));
-    this.showHistory();
-    this.showFeedback('Result deleted!');
-  }
-
-  showStyles() {
-    this.elements.stylesModal.style.display = 'flex';
-    this.elements.quizModal.style.display = 'none';
-    this.elements.historyModal.style.display = 'none';
-    this.renderStyles();
-  }
-
-  closeStyles() {
-    this.elements.stylesModal.style.display = 'none';
-  }
-
-  renderStyles() {
-    const filter = this.elements.roleFilter.value;
-    let styles = [];
-    if (filter === 'all') {
-      styles = [...this.styles.submissive, ...this.styles.dominant];
-    } else {
-      styles = this.styles[filter];
+            
+            Dominant: { contract: +2, autonomy: -2, ownership: +1, dynamic_type: +1, feedback: +1, tasking: +2, collaring: +1, humiliation: +1 },
+            Nurturer: { safeword: +2, vulnerability: +2, checkin: +2, aftercare: +2, contract: -1, autonomy: -2, ownership: -1, medical: +1, humiliation: -1 }, 
+            Master: { contract: +2, dynamic_type: +2, autonomy: -2, collaring: +2, ownership: +2, tasking: +2, findom: +1, public_ack: +2 }, 
+            Rigger: { bondage: +2, sensory_deprivation: +2, temp_play: +1, knife: +1, pain_tolerance: -1, checkin: +2, safeword: +2 }, 
+            Caretaker: { checkin: +2, aftercare: +2, medical: +2, tasking: +1, vulnerability: +2, humiliation: -1 },
+            Disciplinarian: { contract: +2, autonomy: -2, tasking: +2, humiliation: +1, impact: +2, dynamic_type: +1, pain_tolerance: +1, feedback: +2 } 
+        };
     }
-    let html = styles.length ? '' : '<p>No styles found.</p>';
-    styles.forEach(style => {
-      const details = this.styleDetails[style];
-      html += `
-        <div class="style-card">
-          <h3>${style}</h3>
-          <p>${details.desc}</p>
-          <p><strong>Matches With:</strong> ${details.match}</p>
-          <p><strong>Tips:</strong></p>
-          <ul>${details.tips.map(tip => `<li>${tip}</li>`).join('')}</ul>
-        </div>
-      `;
-    });
-    this.elements.stylesContent.innerHTML = html;
-  }
+    
+    init() {
+        this.elements = {
+            startQuiz: document.getElementById('start-quiz'),
+            quizModal: document.getElementById('quiz-modal'),
+            closeQuiz: document.getElementById('close-quiz'),
+            quizTitle: document.getElementById('quiz-title'),
+            progressBar: document.getElementById('progress-fill'),
+            quizContent: document.getElementById('quiz-content'),
+            feedback: document.getElementById('quiz-feedback'),
+            themeToggle: document.getElementById('theme-toggle'),
+            historyBtn: document.getElementById('history-btn'),
+            historyModal: document.getElementById('history-modal'),
+            closeHistory: document.getElementById('close-history'),
+            historyContent: document.getElementById('history-content'),
+            exploreStylesBtn: document.getElementById('explore-styles-btn'),
+            stylesModal: document.getElementById('styles-modal'),
+            closeStyles: document.getElementById('close-styles'),
+            stylesContent: document.getElementById('styles-content'),
+            roleFilter: document.getElementById('role-filter')
+        };
 
-  showFeedback(message) {
-    this.elements.feedback.textContent = message;
-    this.elements.feedback.setAttribute('aria-live', 'polite');
-    this.elements.feedback.classList.add('feedback');
-    setTimeout(() => this.elements.feedback.classList.remove('feedback'), 500);
-  }
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+        this.elements.themeToggle.textContent = savedTheme === 'light' ? '🌙' : '☀️';
+
+        this.elements.startQuiz.addEventListener('click', () => this.startQuiz());
+        this.elements.closeQuiz.addEventListener('click', () => this.closeQuiz());
+        this.elements.themeToggle.addEventListener('click', () => this.toggleTheme());
+        this.elements.historyBtn.addEventListener('click', () => this.showHistory());
+        this.elements.closeHistory.addEventListener('click', () => this.closeHistory());
+        this.elements.exploreStylesBtn.addEventListener('click', () => this.showStyles());
+        this.elements.closeStyles.addEventListener('click', () => this.closeStyles());
+        this.elements.roleFilter.addEventListener('change', () => this.renderStyles());
+    }
+
+    startQuiz() {
+        this.quizActive = true;
+        this.currentStep = 0;
+        this.answers = {}; 
+        this.scores = {};
+        this.showDashboard = false;
+        this.showBreakdown = false;
+        this.elements.quizModal.style.display = 'flex';
+        this.elements.historyModal.style.display = 'none';
+        this.elements.stylesModal.style.display = 'none';
+        this.renderStep();
+    }
+
+    closeQuiz() {
+        this.quizActive = false;
+        this.elements.quizModal.style.display = 'none';
+    }
+
+    toggleTheme() {
+        const currentTheme = document.body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        this.elements.themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+    }
+
+    getSteps() {
+        const steps = [{ type: 'welcome' }];
+
+        this.questions.forEach(q => steps.push({ type: 'question', id: q.id }));
+        steps.push({ type: 'result' });
+        return steps;
+    }
+
+    renderStep() {
+        if (!this.quizActive) return;
+        const steps = this.getSteps();
+        this.currentStep = Math.min(this.currentStep, steps.length - 1);
+        const step = steps[this.currentStep];
+        this.elements.progressBar.style.width = `${((this.currentStep + 1) / steps.length) * 100}%`;
+
+        let html = '';
+        this.elements.quizTitle.textContent = step.type === 'welcome' ? 'Welcome to Kink X Know' : step.type === 'result' ? 'Your Result' : `Question ${this.currentStep} of ${this.questions.length}`;
+
+        switch (step.type) {
+            case 'welcome':
+                html = `
+                    <p>Answer the following questions honestly to reveal your unique Kink Style and Dynamic preference.</p>
+                    <button class="btn btn-primary" onclick="styleExplorer.nextStep()">Begin Quiz (${this.questions.length} questions)</button>
+                `;
+                break;
+            case 'question':
+                const q = this.questions.find(q => q.id === step.id);
+                const value = this.answers[q.id] || 5;
+                html = `
+                    <p class="question-group">**Category:** ${q.group.charAt(0).toUpperCase() + q.group.slice(1)}</p>
+                    <p>**${q.text}**</p>
+                    <input type="range" min="1" max="10" value="${value}" class="trait-slider"  
+                            oninput="styleExplorer.setAnswer('${q.id}', this.value)" aria-label="${q.text}">
+                    <div class="slider-label">${q.label}</div>
+                    <div>
+                        <button class="btn btn-primary" onclick="styleExplorer.nextStep()">Next</button>
+                        <button class="btn" onclick="styleExplorer.prevStep()">Back</button>
+                    </div>
+                `;
+                break;
+            case 'result':
+                const { topStyle, finalRole } = this.calculateResult();
+                const details = this.styleDetails[topStyle];
+                
+                this.role = finalRole; 
+
+                html = `
+                    <div class="result-section">
+                        <p class="modal-title" style="margin-bottom: 10px; text-transform:uppercase;">**Your Affinity:** ${finalRole}</p>
+                        <h3>Your Core Style: ${topStyle}</h3>
+                        <p>${details.desc}</p>
+                        <h3>Ideal Match: ${details.match}</h3>
+                        <p>Explore a dynamic where you complement each other perfectly.</p>
+                        <h3>Tips for Your Style:</h3>
+                        <ul>${details.tips.map(tip => `<li>${tip}</li>`).join('')}</ul>
+                        <div>
+                            <button class="btn btn-primary" onclick="styleExplorer.saveResult()">Save Result</button>
+                            <button class="btn btn-primary" onclick="styleExplorer.startQuiz()">Restart</button>
+                            <button class="btn" onclick="styleExplorer.toggleDashboard()">View Detailed Scores</button>
+                        </div>
+                        <div id="result-dashboard" class="dashboard" style="display: ${this.showDashboard ? 'block' : 'none'};">
+                            ${this.renderDashboard()}
+                        </div>
+                    </div>
+                `;
+                setTimeout(() => confetti({ particleCount: 150, spread: 80 }), 300);
+                break;
+        }
+
+        this.elements.quizContent.innerHTML = html;
+        if (step.type === 'question') {
+             document.querySelector('.trait-slider').value = this.answers[step.id] || 5;
+        }
+    }
+
+    setAnswer(questionId, value) {
+        this.answers[questionId] = parseInt(value, 10);
+        this.showFeedback(`Set ${questionId.replace(/_/g, ' ')} to ${value}`);
+    }
+
+    nextStep() {
+        const steps = this.getSteps();
+        const currentStepData = steps[this.currentStep];
+        
+        if (currentStepData.type === 'question' && !this.answers[currentStepData.id]) {
+            this.showFeedback('Please set a value before moving on.');
+            return;
+        }
+
+        this.currentStep++;
+        this.renderStep();
+    }
+
+    prevStep() {
+        if (this.currentStep > 0) {
+            this.currentStep--;
+            this.renderStep();
+        }
+    }
+
+    calculateResult() {
+        const scores = {};
+        const allStyles = [...this.styles.submissive, ...this.styles.dominant];
+        let totalSubScore = 0;
+        let totalDomScore = 0;
+
+        allStyles.forEach(style => scores[style] = 0);
+        
+        const maxPossibleScore = {};
+        const minPossibleScore = {};
+
+        allStyles.forEach(style => {
+            let styleScore = 0;
+            let currentMax = 0;
+            let currentMin = 0;
+
+            this.questions.forEach(q => {
+                const answerValue = this.answers[q.id] || 5; 
+                const weight = this.styleTraitMap[style][q.id] || 0;
+                
+                styleScore += answerValue * weight;
+
+                if (weight > 0) {
+                    currentMax += 10 * weight;
+                    currentMin += 1 * weight;
+                } else if (weight < 0) {
+                    currentMax += 1 * weight;
+                    currentMin += 10 * weight;
+                }
+            });
+            scores[style] = styleScore;
+            maxPossibleScore[style] = currentMax;
+            minPossibleScore[style] = currentMin;
+        });
+
+        const normalizedScores = {};
+        allStyles.forEach(style => {
+            const min = minPossibleScore[style];
+            const max = maxPossibleScore[style];
+            const range = max - min;
+            const score = scores[style];
+            
+            normalizedScores[style] = range === 0 ? 50 : ((score - min) / range) * 100;
+        });
+
+        this.scores = normalizedScores;
+
+     
+        this.styles.submissive.forEach(s => totalSubScore += normalizedScores[s]);
+        this.styles.dominant.forEach(s => totalDomScore += normalizedScores[s]);
+        
+        const avgSubScore = totalSubScore / this.styles.submissive.length;
+        const avgDomScore = totalDomScore / this.styles.dominant.length;
+        
+        const finalRole = avgSubScore > avgDomScore ? 'submissive' : 'dominant';
+
+
+        const sortedStyles = Object.entries(normalizedScores).sort((a, b) => b[1] - a[1]);
+        const topStyle = sortedStyles[0][0];
+
+        return { topStyle, finalRole };
+    }
+
+    renderDashboard() {
+        const sortedScores = Object.entries(this.scores).sort((a, b) => b[1] - a[1]);
+        return sortedScores.map(([style, score]) => {
+            const isTop = style === sortedScores[0][0];
+            return `
+                <div class="dashboard-item" style="font-weight: ${isTop ? 'bold' : 'normal'};">
+                    <span>${style} ${isTop ? ' (Top Match)' : ''}</span>
+                    <div class="score-bar"><div class="score-bar-fill" style="width: ${score}%"></div></div>
+                    <span class="score-value">${score.toFixed(1)}%</span>
+                </div>
+            `;
+        }).join('');
+    }
+
+    toggleDashboard() {
+        this.showDashboard = !this.showDashboard;
+        this.renderStep();
+    }
+
+    saveResult() {
+        const { topStyle, finalRole } = this.calculateResult();
+        const result = {
+            topStyle,
+            scores: this.scores,
+            role: finalRole, 
+            timestamp: new Date().toLocaleString(),
+            answers: this.answers
+        };
+        const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
+        history.push(result);
+        localStorage.setItem('quizHistory', JSON.stringify(history));
+        this.showFeedback('Result saved!');
+    }
+    
+    showHistory() {
+        this.elements.historyModal.style.display = 'flex';
+        this.elements.quizModal.style.display = 'none';
+        this.elements.stylesModal.style.display = 'none';
+        const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
+        let html = history.length ? '' : '<p>No past results found.</p>';
+        history.forEach((result, index) => {
+            html += `
+                <div class="history-item">
+                    <span>${result.timestamp}: ${result.topStyle} (${result.role})</span>
+                    <div>
+                        <button class="btn" onclick="styleExplorer.viewResult(${index})">View</button>
+                        <button class="btn" onclick="styleExplorer.deleteResult(${index})">Delete</button>
+                    </div>
+                </div>
+            `;
+        });
+        this.elements.historyContent.innerHTML = html;
+    }
+
+    closeHistory() {
+        this.elements.historyModal.style.display = 'none';
+    }
+
+    viewResult(index) {
+        const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
+        const result = history[index];
+        if (!result) return;
+        
+        this.answers = result.answers;
+        this.scores = result.scores;
+        this.role = result.role; 
+        
+        this.currentStep = this.getSteps().length - 1;
+        this.quizActive = true;
+        this.showDashboard = true;
+        
+        this.elements.quizModal.style.display = 'flex';
+        this.elements.historyModal.style.display = 'none';
+        this.elements.stylesModal.style.display = 'none';
+        this.renderStep();
+    }
+
+    deleteResult(index) {
+        const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
+        history.splice(index, 1);
+        localStorage.setItem('quizHistory', JSON.stringify(history));
+        this.showHistory();
+        this.showFeedback('Result deleted!');
+    }
+    
+    showStyles() {
+        this.elements.stylesModal.style.display = 'flex';
+        this.elements.quizModal.style.display = 'none';
+        this.elements.historyModal.style.display = 'none';
+        this.elements.roleFilter.value = 'all'; 
+        this.renderStyles();
+    }
+
+    closeStyles() {
+        this.elements.stylesModal.style.display = 'none';
+    }
+
+    renderStyles() {
+        const filter = this.elements.roleFilter.value;
+        let styles = [];
+        if (filter === 'all') {
+            styles = [...this.styles.submissive, ...this.styles.dominant];
+        } else {
+            styles = this.styles[filter].filter(s => this.styleDetails[s]);
+        }
+        let html = styles.length ? '' : '<p>No styles found.</p>';
+        styles.forEach(style => {
+            const details = this.styleDetails[style];
+            html += `
+                <div class="style-card">
+                    <h3>${style}</h3>
+                    <p>${details.desc}</p>
+                    <p><strong>Matches With:</strong> ${details.match}</p>
+                    <p><strong>Tips:</strong></p>
+                    <ul>${details.tips.map(tip => `<li>${tip}</li>`).join('')}</ul>
+                </div>
+            `;
+        });
+        this.elements.stylesContent.innerHTML = html;
+    }
+
+    showFeedback(message) {
+        this.elements.feedback.textContent = message;
+        this.elements.feedback.setAttribute('aria-live', 'polite');
+        setTimeout(() => this.elements.feedback.textContent = '', 2000);
+    }
 }
 
 const styleExplorer = new StyleExplorer();
