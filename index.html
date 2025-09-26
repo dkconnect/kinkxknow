@@ -5,35 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kink X Know</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/kinkxknow.png">
 </head>
-<body data-theme="light">
-    <main class="main-layout">
-        <button id="theme-toggle" class="btn theme-toggle-btn" aria-label="Toggle theme">🌙</button>
+<body>
+    <main class="new-main-layout">
+        
+        <h1 class="main-title">KINK X KNOW</h1>
 
-        <img src="images/kinkxknow.png" alt="Kink X Know Logo" class="kinkxknow-logo">
-        <img src="images/lips.png" alt="Lips Illustration" class="lips-image">
-        <img src="images/heels.png" alt="Heels with Rope Illustration" class="heels-image">
-        <img src="images/hand_white.png" alt="Hand with Rope Illustration" class="hand-image">
-        <img src="images/hug.png" alt="Hug Illustration" class="hug-image">
+        <div class="content-grid">
+            <div class="left-panels">
+                <div class="panel-box panel-top-left" id="start-quiz-panel">
+                    <img src="adding.png" alt="Rope bondage" class="panel-image">
+                    <div class="panel-overlay">
+                        <span class="panel-title">Find Your Style</span>
+                    </div>
+                </div>
 
-        <div class="button-group">
-            <button id="start-quiz" class="btn btn-image-style">Discover Your Style!</button>
-            <button id="explore-styles-btn" class="btn btn-image-style">Explore Styles</button>
-            <button id="history-btn" class="btn btn-image-style">Past Results</button>
+                <div class="panel-box panel-top-right" id="explore-styles-panel">
+                    <img src="aading.png" alt="Wartenberg" class="panel-image">
+                    <div class="panel-overlay">
+                        <span class="panel-title">Discover Kinks</span>
+                    </div>
+                </div>
+
+                <div class="panel-box panel-bottom-left" id="history-panel">
+                    <img src="kink_x_know.png" alt="Spanking" class="panel-image">
+                    <div class="panel-overlay">
+                        <span class="panel-title">Past Results</span>
+                    </div>
+                </div>
+
+                <div class="panel-box panel-bottom-right" id="about-panel">
+                    <img src="kink_x_know.png" alt="Throne" class="panel-image">
+                    <div class="panel-overlay">
+                        <span class="panel-title">About</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="static-art-box">
+                <img src="kink_x_know.png" alt="Rope" class="static-art-image">
+            </div>
         </div>
+
+        <footer class="main-footer">
+            <p>Designed & Created by Lucifer. All rights reserved 2025.</p>
+            <p><a href="adding" class="footer-link">Artwork Credits here</a></p>
+        </footer>
     </main>
 
     <div id="quiz-modal" class="modal" role="dialog" aria-labelledby="quiz-title">
-        <div class="modal-content">
-            <button id="close-quiz" class="close-btn" aria-label="Close quiz">×</button>
-            <h2 id="quiz-title" class="modal-title"></h2>
-            <div id="progress-bar" class="progress-bar">
-                <div id="progress-fill" class="progress-fill"></div>
+        <div class="modal-content-container"> 
+            
+            <div class="quiz-image-panel">
+                <img src="img.png" alt="Illustration" class="quiz-illustration">
             </div>
-            <div id="quiz-content" class="quiz-content"></div>
-            <div id="quiz-feedback" class="feedback"></div>
+
+            <div class="modal-content quiz-content-panel">
+                <button id="close-quiz" class="close-btn" aria-label="Close quiz">×</button>
+                <h2 id="quiz-title" class="modal-title quiz-step-header"></h2>
+                
+                <div id="progress-bar" class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                
+                <div id="quiz-content" class="quiz-content"></div>
+                
+                <div id="quiz-feedback" class="feedback"></div>
+
+                <footer class="modal-footer">
+                    <p>Designed & Created by Lucifer. All rights reserved 2025.</p>
+                    <p><a href="will add here lemme first create" class="footer-link">Artwork Credits here</a></p>
+                </footer>
+            </div>
         </div>
     </div>
     <div id="history-modal" class="modal" role="dialog" aria-labelledby="history-title">
@@ -43,6 +88,7 @@
             <div id="history-content" class="history-content"></div>
         </div>
     </div>
+    
     <div id="styles-modal" class="modal" role="dialog" aria-labelledby="styles-title">
         <div class="modal-content">
             <button id="close-styles" class="close-btn" aria-label="Close styles library">×</button>
@@ -58,6 +104,7 @@
             <div id="styles-content" class="styles-content"></div>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="script.js"></script>
 </body>
