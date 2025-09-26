@@ -213,7 +213,7 @@ class StyleExplorer {
 
                 this.role = finalRole;
 
-                const imageUrl = details.image || 'slut_final.png';
+                const imageUrl = details.image || 'images/calc.jpg';
                 this.elements.quizIllustration.src = imageUrl;
                 this.elements.quizIllustration.alt = `Illustration for ${topStyle} result.`;
 
