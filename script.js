@@ -16,12 +16,12 @@ class StyleExplorer {
             Brat: { desc: 'You love playful resistance and teasing—a perfect foil for a firm leader.', match: 'Disciplinarian', tips: ['Keep it fun but respect hard limits.', 'Ensure consent.'], image: 'images/sub_brat.png' },
             Little: { desc: 'You embrace a carefree, nurtured role, craving affection and protection.', match: 'Caretaker/Nurturer', tips: ['Find a nurturing partner.', 'Explore safely.'], image: 'images/sub_little.png' },
             Pet: { desc: 'You thrive on affection, play, and often physical touch and ownership symbols.', match: 'Owner/Master', tips: ['Enjoy your role.', 'Seek a caring dynamic.'], image: 'images/sub_pet.png' },
-            'Rope Bunny': { desc: 'You love the art and sensation of being physically bound and restrained.', match: 'Rigger', tips: ['Learn safety and nerve awareness.', 'Pair with a skilled Rigger.'], image: 'images/kink x know (3)_sub.png' }, // Updated Image Path
+            'Rope Bunny': { desc: 'You love the art and sensation of being physically bound and restrained.', match: 'Rigger', tips: ['Learn safety and nerve awareness.', 'Pair with a skilled Rigger.'], image: 'images/kink x know (3)_sub.png' },
 
             Dominant: { desc: 'You shine when leading with confidence, preferring control and clear expectations.', match: 'Submissive', tips: ['Listen to your partner.', 'Balance control with care.'], image: 'images/dom_default.png' },
             Nurturer: { desc: 'You guide with warmth, support, and a focus on safety and emotional connection.', match: 'Little', tips: ['Be patient.', 'Foster deep trust.'], image: 'images/dom_nurturer.png' },
             Master: { desc: 'You lead with authority and responsibility, often valuing commitment and structure.', match: 'Slave/Submissive', tips: ['Negotiate clearly.', 'Build trust and commitment.'], image: 'images/dom_master.png' },
-            Rigger: { desc: 'You create art through restraint, valuing technical skill and sensory experience.', match: 'Rope Bunny', tips: ['Study bondage safety meticulously.', 'Practice precision.'], image: 'images/kink x know (3)_dom.png' }, // Updated Image Path
+            Rigger: { desc: 'You create art through restraint, valuing technical skill and sensory experience.', match: 'Rope Bunny', tips: ['Study bondage safety meticulously.', 'Practice precision.'], image: 'images/kink x know (3)_dom.png' },
             Caretaker: { desc: 'You nurture with love and structure, focusing on a partner\'s comfort and well-being.', match: 'Little', tips: ['Be consistent.', 'Encourage growth.'], image: 'images/dom_caretaker.png' },
             Disciplinarian: { desc: 'You enjoy enforcing rules and structure, providing firm guidance and consequences.', match: 'Brat/Submissive', tips: ['Ensure clear rules are agreed upon.', 'Focus on growth and trust.'], image: 'images/dom_disciplinarian.png' }
         };
@@ -86,13 +86,13 @@ class StyleExplorer {
 
     init() {
         this.elements = {
-            // New Panel 
+            // New Panel IDs
             startQuizPanel: document.getElementById('start-quiz-panel'),
             exploreStylesPanel: document.getElementById('explore-styles-panel'),
             historyPanel: document.getElementById('history-panel'),
             aboutPanel: document.getElementById('about-panel'),
 
-            // Existing 
+            // Existing
             quizModal: document.getElementById('quiz-modal'),
             closeQuiz: document.getElementById('close-quiz'),
             historyModal: document.getElementById('history-modal'),
@@ -100,22 +100,26 @@ class StyleExplorer {
             stylesModal: document.getElementById('styles-modal'),
             closeStyles: document.getElementById('close-styles'),
             
-     
+    
             quizTitle: document.getElementById('quiz-title'),
-            progressBar: document.getElementById('progress-fill'),
+            progressBar: document.getElementById('progress-bar'),
+            progressFill: document.getElementById('progress-fill'),
             quizContent: document.getElementById('quiz-content'),
             feedback: document.getElementById('quiz-feedback'),
             historyContent: document.getElementById('history-content'),
             stylesContent: document.getElementById('styles-content'),
             roleFilter: document.getElementById('role-filter'),
-            quizIllustration: document.querySelector('.quiz-illustration') 
+            quizIllustration: document.querySelector('.quiz-illustration'),
+            modalFooter: document.querySelector('.modal-footer')
         };
         
+  
         this.elements.startQuizPanel.addEventListener('click', () => this.startQuiz());
         this.elements.exploreStylesPanel.addEventListener('click', () => this.showStyles());
         this.elements.historyPanel.addEventListener('click', () => this.showHistory());
-   
+  
         this.elements.aboutPanel.addEventListener('click', () => this.showFeedback('About page not yet implemented.'));
+
 
         this.elements.closeQuiz.addEventListener('click', () => this.closeQuiz());
         this.elements.closeHistory.addEventListener('click', () => this.closeHistory());
@@ -133,8 +137,8 @@ class StyleExplorer {
         this.elements.quizModal.style.display = 'flex';
         this.elements.historyModal.style.display = 'none';
         this.elements.stylesModal.style.display = 'none';
-        this.elements.quizIllustration.src = 'images/calc.jpg'; 
-        this.elements.quizIllustration.alt = 'Illustration';
+        this.elements.quizIllustration.src = 'images/calc.jpg';
+        this.elements.quizIllustration.alt = 'Quiz Illustration';
         this.renderStep();
     }
 
@@ -155,23 +159,24 @@ class StyleExplorer {
         const steps = this.getSteps();
         this.currentStep = Math.min(this.currentStep, steps.length - 1);
         const step = steps[this.currentStep];
-        
-        this.elements.progressBar.style.width = `${((this.currentStep) / this.questions.length) * 100}%`;
+
+       
         if (step.type === 'result') {
-             this.elements.progressBar.style.width = '100%';
-        } else if (step.type === 'welcome') {
-             this.elements.progressBar.style.width = '0%';
+            this.elements.progressBar.classList.add('hide-element');
+            this.elements.modalFooter.classList.add('hide-element');
+        } else {
+            this.elements.progressBar.classList.remove('hide-element');
+            this.elements.modalFooter.classList.remove('hide-element');
+            this.elements.progressFill.style.width = `${((this.currentStep) / this.questions.length) * 100}%`;
         }
 
-
         let html = '';
-        
-      
-        this.elements.quizTitle.textContent = step.type === 'welcome' 
-            ? 'FIND YOUR STYLE' 
-            : step.type === 'result' 
-            ? 'YOUR RESULT' 
-            : `FIND YOUR STYLE`; 
+
+        this.elements.quizTitle.textContent = step.type === 'welcome'
+            ? 'FIND YOUR STYLE'
+            : step.type === 'result'
+            ? 'YOUR RESULT'
+            : `FIND YOUR STYLE`;
 
         switch (step.type) {
             case 'welcome':
@@ -185,15 +190,15 @@ class StyleExplorer {
             case 'question':
                 const q = this.questions.find(q => q.id === step.id);
                 const value = this.answers[q.id] || 5;
-                
-                this.elements.quizIllustration.src = 'images/calc.jpg'; 
-                this.elements.quizIllustration.alt = 'Illustration';
-            
+
+                this.elements.quizIllustration.src = 'images/calc.jpg';
+                this.elements.quizIllustration.alt = 'Quiz Illustration';
+
                 html = `
                     <p class="question-group">Question ${this.currentStep} of ${this.questions.length}</p>
                     <strong>CATEGORY: ${q.group.toUpperCase()}</strong>
                     <p>${q.text}</p>
-                    <input type="range" min="1" max="10" value="${value}" class="trait-slider" 
+                    <input type="range" min="1" max="10" value="${value}" class="trait-slider"
                             oninput="styleExplorer.setAnswer('${q.id}', this.value)" aria-label="${q.text}">
                     <div class="slider-label">${q.label}</div>
                     <div class="quiz-navigation">
@@ -205,27 +210,26 @@ class StyleExplorer {
             case 'result':
                 const { topStyle, finalRole } = this.calculateResult();
                 const details = this.styleDetails[topStyle];
-                
+
                 this.role = finalRole;
 
-                const imageUrl = details.image || 'slut_final.png';
+                const imageUrl = details.image || 'images/calc.jpg';
                 this.elements.quizIllustration.src = imageUrl;
                 this.elements.quizIllustration.alt = `Illustration for ${topStyle} result.`;
 
-              
                 html = `
                     <div class="result-container">
-                        <p class="result-affinity">Affinity : ${finalRole.toUpperCase()}</p>
-                        <p class="result-core-style">Your Core Style : ${topStyle}</p>
+                        <h2 class="result-affinity">Affinity : ${finalRole.toUpperCase()}</h2>
+                        <h3 class="result-core-style">Your Core Style : ${topStyle}</h3>
                         <p class="result-description">${details.desc}</p>
 
-                        <p class="result-match-title">Ideal Match :</p>
+                        <h4 class="result-match-title">Ideal Match :</h4>
                         <p class="result-match-value">${details.match}</p>
                         <p class="result-description">Explore a dynamic where you complement each other perfectly.</p>
 
-                        <p class="result-tips-title">Tips for Your Style:</p>
+                        <h4 class="result-tips-title">Tips for Your Style:</h4>
                         <ul class="result-tips-list">${details.tips.map(tip => `<li>${tip}</li>`).join('')}</ul>
-                        
+
                         <div class="result-actions">
                             <button class="btn btn-primary" onclick="styleExplorer.saveResult()">SAVE</button>
                             <button class="btn btn-primary" onclick="styleExplorer.startQuiz()">RESTART</button>
@@ -242,7 +246,10 @@ class StyleExplorer {
 
         this.elements.quizContent.innerHTML = html;
         if (step.type === 'question') {
-              document.querySelector('.trait-slider').value = this.answers[step.id] || 5;
+            const slider = document.querySelector('.trait-slider');
+            if (slider) {
+                slider.value = this.answers[step.id] || 5;
+            }
         }
     }
 
@@ -258,11 +265,6 @@ class StyleExplorer {
         if (currentStepData.type === 'question' && !this.answers[currentStepData.id]) {
             this.showFeedback('Please set a value before moving on.');
             return;
-        }
-        
-        
-        if (currentStepData.type === 'question' && !this.answers[currentStepData.id]) {
-             this.answers[currentStepData.id] = 5;
         }
 
         this.currentStep++;
@@ -296,7 +298,6 @@ class StyleExplorer {
                 const answerValue = this.answers[q.id] || 5;
                 const weight = this.styleTraitMap[style][q.id] || 0;
                 
-          
                 styleScore += answerValue * weight;
 
                 if (weight > 0) {
@@ -319,7 +320,6 @@ class StyleExplorer {
             const range = max - min;
             const score = scores[style];
             
-          
             normalizedScores[style] = range === 0 ? 50 : ((score - min) / range) * 100;
         });
 
