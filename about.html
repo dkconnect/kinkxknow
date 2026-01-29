@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>The Manifesto | KinkXKnow</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    <link rel="stylesheet" href="styles.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#D4AF37",
+                        "royal-dark": "#050a14",
+                        "neon-pink": "#FF1493",
+                        "silver-muted": "#A8A8A8",
+                    },
+                    fontFamily: {
+                        "ornate": ["Cinzel Decorative", "serif"],
+                        "serif-base": ["Cinzel", "serif"],
+                        "serif-elegant": ["Playfair Display", "serif"],
+                        "sans-clean": ["Montserrat", "sans-serif"],
+                    }
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        .manifesto-text {
+            @apply text-silver-muted font-serif-elegant text-xl leading-relaxed italic;
+        }
+        .section-divider {
+            @apply w-24 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent my-16 mx-auto;
+        }
+        .text-glow-gold { text-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
+    </style>
+</head>
+<body class="bg-royal-dark font-sans-clean text-white/80 selection:bg-neon-pink overflow-x-hidden">
+
+    <header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-12 py-8 backdrop-blur-md border-b border-white/5">
+        <div class="flex items-center gap-4">
+            <div class="size-10 text-gold-rich drop-shadow-[0_0_8px_rgba(255,20,147,0.5)]">
+                <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"></path>
+                </svg>
+            </div>
+            <h2 class="text-gold-rich font-serif-base text-xl font-bold tracking-[0.3em] uppercase">Kink X Know</h2>
+        </div>
+        <nav class="hidden lg:flex items-center gap-12 text-[10px] font-bold tracking-[0.3em] uppercase">
+            <a class="hover:text-neon-pink transition-all" href="index.html">Home</a>
+            <a class="hover:text-neon-pink transition-all" href="calculator.html">Calculator</a>
+        </nav>
+    </header>
+
+    <main class="relative pt-52 pb-32 px-6">
+        <div class="max-w-4xl mx-auto">
+            
+            <section class="text-center mb-24">
+                <span class="text-neon-pink font-serif-base tracking-[0.6em] uppercase text-[10px] mb-4 block opacity-80">A Quiet Rebellion</span>
+                <h1 class="font-ornate text-primary text-5xl md:text-7xl font-black tracking-widest uppercase text-glow-gold mb-6">
+                    About Us
+                </h1>
+            </section>
+
+            <section class="space-y-12 text-center">
+                <p class="manifesto-text">
+                    Kink X Know was conceived as an act of quiet rebellion—an invitation to replace taboo with intellect, and secrecy with refinement. This is not indulgence hidden in shadows, but self-discovery elevated into an art form.
+                </p>
+
+                <p class="manifesto-text">
+                    Desire, when examined with precision and grace, becomes a map of the human psyche. Why, then, should we continue to avert our gaze? For how long will we pretend that our curiosities do not exist?
+                </p>
+
+                <div class="section-divider"></div>
+
+                <p class="text-primary font-serif-base tracking-[0.2em] text-lg uppercase leading-loose">
+                    The time has come to crown kinks as part of our cultural language—to let them breathe in the open, unashamed, unapologetic, and undeniably human.
+                </p>
+
+                <p class="manifesto-text">
+                    What pop culture once whispered, we now articulate with confidence.
+                </p>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section class="glass-card p-12 rounded-none border-x-0 border-y border-primary/20 text-center">
+                <h2 class="text-neon-pink font-serif-base text-xs tracking-[0.5em] uppercase mb-8">Anonymity First</h2>
+                <div class="space-y-4">
+                    <p class="text-white font-serif-base text-2xl tracking-widest uppercase">Your data is sovereign.</p>
+                    <p class="text-silver-muted tracking-[0.3em] text-[10px] uppercase">We calculate. We illuminate. We disappear.</p>
+                    <p class="text-silver-muted/60 font-light italic text-sm pt-4 max-w-lg mx-auto">
+                        Nothing is stored. Nothing is owned. Your truth remains yours alone—untouched, unclaimed, inviolable.
+                    </p>
+                </div>
+            </section>
+
+            <section class="mt-32 text-center">
+                <span class="material-symbols-outlined text-primary/20 text-6xl mb-8">fingerprint</span>
+                <h2 class="font-serif-base text-primary text-2xl tracking-[0.4em] uppercase mb-10">The Architect</h2>
+                
+                <div class="space-y-6 manifesto-text text-lg">
+                    <p>Curated, designed, and coded by <span class="text-white font-bold tracking-widest">Dibyanshu (Lucifer)</span>.</p>
+                    <p class="text-silver-muted">
+                        A deliberate fusion of seduction, psychology, and analytics crafted to dissolve shame and replace it with recognition.
+                    </p>
+                    <p class="text-primary uppercase tracking-[0.2em] text-sm not-italic mt-10">
+                        This is not about indulgence. It is about normalization.
+                    </p>
+                    <p class="text-white">
+                        About realizing you were never broken—only unexplored.
+                    </p>
+                </div>
+
+                <div class="mt-24 pt-12 border-t border-white/5 flex flex-col items-center">
+                    <span class="text-primary font-serif-base tracking-[0.5em] text-xs">EST. 2025</span>
+                    <span class="text-silver-muted/40 text-[9px] uppercase tracking-[0.3em] mt-2">From My Desk</span>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-white/5 bg-royal-dark/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto flex flex-col items-center justify-center gap-6">
+            <div class="flex items-center gap-8 mb-4">
+                <span class="material-symbols-outlined text-gold-rich/30 text-xl">vaping_rooms</span>
+                <span class="material-symbols-outlined text-neon-pink/30 text-xl">self_improvement</span>
+                <span class="material-symbols-outlined text-gold-rich/30 text-xl">festival</span>
+            </div>
+            <p class="text-gold-rich/60 text-[10px] uppercase tracking-[0.5em] font-medium text-center">
+                Copyright - 2026 - KinkxKnow
+            </p>
+            <p class="text-gold-rich/60 text-[10px] uppercase tracking-[0.5em] font-medium text-center">
+                Dibyanshu | Lucifer
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
