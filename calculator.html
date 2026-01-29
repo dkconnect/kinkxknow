@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    <link rel="stylesheet" href="styles.css">
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -25,35 +26,21 @@
             },
         }
     </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .neon-line-bg {
-                background-color: #050a14;
-                background-image: 
-                    radial-gradient(circle at 20% 30%, rgba(255, 20, 147, 0.1) 0%, transparent 40%),
-                    radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
-            }
-            .glass-card {
-                background: rgba(5, 10, 20, 0.7);
-                backdrop-filter: blur(20px);
-                border: 1px solid rgba(212, 175, 55, 0.3);
-            }
-        }
-    </style>
 </head>
-<body class="font-display bg-background-dark text-white min-h-screen neon-line-bg">
+<body class="font-display bg-background-dark text-white min-h-screen neon-line-bg overflow-x-hidden">
     <header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-12 py-8 backdrop-blur-md border-b border-primary/10">
         <div class="flex items-center gap-4">
             <h2 class="text-primary font-serif-base text-xl font-bold tracking-[0.3em] uppercase">Kink X Know</h2>
         </div>
         <nav class="hidden lg:flex items-center gap-12 text-[10px] font-bold tracking-[0.3em] uppercase">
-            <a class="text-white/70 hover:text-neon-pink" href="index.html">Home</a>
+            <a class="text-white/70 hover:text-neon-pink transition-all" href="index.html">Home</a>
             <a class="text-primary border-b border-primary" href="#">Calculator</a>
         </nav>
     </header>
 
     <main class="relative z-10 flex flex-col items-center justify-center min-h-screen pt-24 px-4">
-        <div class="glass-card relative w-full max-w-4xl p-10 md:p-16 rounded-xl overflow-hidden">
+        <div id="quiz-card" class="glass-card relative w-full max-w-4xl p-10 md:p-16 rounded-xl overflow-hidden">
+            
             <div class="flex flex-col gap-4 mb-12">
                 <div class="flex justify-between items-end">
                     <p id="entry-count" class="text-primary font-serif-base text-lg tracking-widest uppercase">Entry I of XXIV</p>
@@ -65,19 +52,26 @@
             </div>
 
             <div class="flex flex-col items-center text-center gap-8 mb-16">
-                <span id="q-category" class="text-neon-pink text-[10px] font-bold tracking-[0.4em] uppercase opacity-80">Category</span>
-                <h1 id="q-text" class="font-serif-base text-3xl md:text-5xl font-bold leading-tight text-white tracking-wide">Initializing Exploration...</h1>
+                <span id="q-category" class="text-neon-pink text-[10px] font-bold tracking-[0.4em] uppercase opacity-80">Initializing</span>
+                <h1 id="q-text" class="font-serif-base text-3xl md:text-5xl font-bold leading-tight text-white tracking-wide">Loading Exploration...</h1>
             </div>
 
-            <div id="scale-container" class="grid grid-cols-6 md:grid-cols-11 gap-3 w-full max-w-3xl mx-auto mb-16"></div>
+            <div id="scale-container" class="grid grid-cols-6 md:grid-cols-11 gap-3 w-full max-w-3xl mx-auto mb-16">
+                </div>
 
             <div class="flex items-center justify-between pt-8 border-t border-white/5">
-                <button onclick="styleExplorer.prevStep()" class="text-white/40 hover:text-primary font-bold uppercase tracking-[0.2em] text-[10px]">Back</button>
-                <button onclick="styleExplorer.nextStep()" class="px-10 py-4 bg-primary text-background-dark font-serif-base font-bold uppercase tracking-[0.2em] text-xs hover:scale-105 transition-all shadow-lg">Next</button>
+                <button onclick="styleExplorer.prevStep()" class="text-white/40 hover:text-primary font-bold uppercase tracking-[0.2em] text-[10px] transition-all">Back</button>
+                <button onclick="styleExplorer.nextStep()" class="px-10 py-4 bg-primary text-background-dark font-serif-base font-bold uppercase tracking-[0.2em] text-xs hover:scale-105 transition-all shadow-lg">Next Entry</button>
             </div>
         </div>
+
+        <footer class="mt-12 text-center pb-8">
+            <p class="text-white/20 italic text-[10px] tracking-[0.5em] uppercase">Copyright - KinkxKnow (2026 | Lucifer)</p>
+        </footer>
     </main>
 
+    <div class="fixed bottom-0 left-0 w-full h-64 bg-gradient-to-t from-neon-pink/10 to-transparent pointer-events-none -z-10"></div>
+    
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="script.js"></script>
 </body>
