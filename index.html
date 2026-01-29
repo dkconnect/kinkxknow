@@ -1,111 +1,202 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kink X Know</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="images/lips.png">
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KinkXKnow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&amp;family=Cinzel:wght@400;700;900&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Montserrat:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "royal-blue": "#002366",
+                        "royal-dark": "#050a14",
+                        "gold-rich": "#D4AF37",
+                        "gold-glow": "#FFD700",
+                        "neon-pink": "#FF1493",
+                        "neon-magenta": "#FF00FF",
+                        "silver-deep": "#A8A8A8",
+                    },
+                    fontFamily: {
+                        "ornate": ["Cinzel Decorative", "serif"],
+                        "serif-base": ["Cinzel", "serif"],
+                        "serif-elegant": ["Playfair Display", "serif"],
+                        "sans-clean": ["Montserrat", "sans-serif"],
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        :root {
+            --gold: #D4AF37;
+            --neon-pink: #FF1493;
+            --royal-dark: #050a14;
+        }
+        body {
+            background-color: var(--royal-dark);
+        }
+        .neon-bg {
+            background-image: url('https://www.shutterstock.com/image-vector/vibrant-pink-neon-line-art-600nw-2620013953.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            mix-blend-mode: screen;
+        }
+        .gold-neon-glow {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.6), 
+                         0 0 20px rgba(212, 175, 55, 0.4),
+                         0 0 30px rgba(255, 20, 147, 0.3);
+        }
+        .glass-card {
+            background: rgba(5, 10, 20, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8),
+                        inset 0 0 15px rgba(255, 20, 147, 0.1);
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: #FF1493;
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px 0 rgba(255, 20, 147, 0.2),
+                        inset 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+        .card-image-overlay {
+            background: linear-gradient(to bottom, rgba(5, 10, 20, 0.2), rgba(5, 10, 20, 0.9));
+        }
+        .neon-border-glow {
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.4);
+        }
+        .title-spacing {
+            letter-spacing: 0.15em;
+        }
+    </style>
 </head>
-<body>
-    <main class="new-main-layout">
-        
-        <h1 class="main-title">KINK X KNOW</h1>
-
-        <div class="content-grid">
-            <div class="left-panels">
-                <div class="panel-box panel-top-left" id="start-quiz-panel">
-                    <img src="images/findurstyle.jpg" alt="Rope bondage" class="panel-image">
-                    <div class="panel-overlay">
-                        <span class="panel-title">Find Your Style</span>
-                    </div>
-                </div>
-
-                <div class="panel-box panel-top-right" id="explore-styles-panel">
-                    <img src="images/page 2, discover.png" alt="Wartenberg" class="panel-image">
-                    <div class="panel-overlay">
-                        <span class="panel-title">Discover Kinks</span>
-                    </div>
-                </div>
-
-                <div class="panel-box panel-bottom-left" id="history-panel">
-                    <img src="images/4.jpg" alt="Spanking" class="panel-image">
-                    <div class="panel-overlay">
-                        <span class="panel-title">Past Results</span>
-                    </div>
-                </div>
-
-                <div class="panel-box panel-bottom-right" id="about-panel">
-                    <img src="images/kink x know (4).png" alt="Throne" class="panel-image">
-                    <div class="panel-overlay">
-                        <span class="panel-title">About</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="static-art-box">
-                <img src="images/rope static.png" alt="Rope" class="static-art-image">
-            </div>
-        </div>
-
-        <footer class="main-footer">
-            <p>Designed & Created by Lucifer. All rights reserved 2025.</p>
-            <p><a href="adding" class="footer-link">Artwork Credits here</a></p>
-        </footer>
-    </main>
-
-    <div id="quiz-modal" class="modal" role="dialog" aria-labelledby="quiz-title">
-        <div class="modal-content-container"> 
-            
-            <div class="quiz-image-panel">
-                <img src="images/calc.jpg" alt="Illustration" class="quiz-illustration">
-            </div>
-
-            <div class="modal-content quiz-content-panel">
-                <button id="close-quiz" class="close-btn" aria-label="Close quiz">×</button>
-                <h2 id="quiz-title" class="modal-title quiz-step-header"></h2>
-                
-                <div id="progress-bar" class="progress-bar">
-                    <div id="progress-fill" class="progress-fill"></div>
-                </div>
-                
-                <div id="quiz-content" class="quiz-content"></div>
-                
-                <div id="quiz-feedback" class="feedback"></div>
-
-                <footer class="modal-footer">
-                    <p>Designed & Created by Lucifer. All rights reserved 2025.</p>
-                    <p><a href="will add here lemme first create" class="footer-link">Artwork Credits here</a></p>
-                </footer>
-            </div>
-        </div>
-    </div>
-    <div id="history-modal" class="modal" role="dialog" aria-labelledby="history-title">
-        <div class="modal-content">
-            <button id="close-history" class="close-btn" aria-label="Close history">×</button>
-            <h2 id="history-title" class="modal-title">Past Results</h2>
-            <div id="history-content" class="history-content"></div>
-        </div>
-    </div>
-    
-    <div id="styles-modal" class="modal" role="dialog" aria-labelledby="styles-title">
-        <div class="modal-content">
-            <button id="close-styles" class="close-btn" aria-label="Close styles library">×</button>
-            <h2 id="styles-title" class="modal-title">Style Library</h2>
-            <div id="styles-filter" class="styles-filter">
-                <label for="role-filter">Filter by Role:</label>
-                <select id="role-filter" aria-label="Filter styles by role">
-                    <option value="all">All Styles</option>
-                    <option value="submissive">Submissive</option>
-                    <option value="dominant">Dominant</option>
-                </select>
-            </div>
-            <div id="styles-content" class="styles-content"></div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
+<body class="font-sans-clean text-silver-deep selection:bg-neon-pink selection:text-white overflow-x-hidden">
+<div class="fixed inset-0 z-0 bg-royal-dark">
+<div class="absolute inset-0 neon-bg opacity-40"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-royal-dark/20 via-transparent to-royal-dark"></div>
+</div>
+<div class="relative z-10 flex min-h-screen flex-col">
+<header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-12 py-8">
+<div class="flex items-center gap-4">
+<div class="size-10 text-gold-rich drop-shadow-[0_0_8px_rgba(255,20,147,0.5)]">
+<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"></path>
+</svg>
+</div>
+<h2 class="text-gold-rich font-serif-base text-xl font-bold tracking-[0.3em] uppercase">Kink X Know</h2>
+</div>
+<nav class="hidden lg:flex items-center gap-12">
+<a class="text-silver-deep hover:text-neon-pink transition-all text-[10px] font-bold tracking-[0.3em] uppercase" href="calculator.html">Kink Calculator</a>
+<a class="text-silver-deep hover:text-neon-pink transition-all text-[10px] font-bold tracking-[0.3em] uppercase" href="#">Buy Merchandise</a>
+</nav>
+<button class="border border-gold-rich/50 px-8 py-2 text-gold-rich text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-gold-rich hover:text-royal-dark transition-all duration-500">
+                Donate
+            </button>
+</header>
+<main class="flex-1">
+<section class="h-screen flex flex-col items-center justify-center text-center px-4">
+<div class="space-y-4">
+<p class="text-neon-pink font-serif-elegant italic text-lg tracking-[0.4em] uppercase opacity-80 mb-4">The Sacred Desires</p>
+<h1 class="font-ornate text-gold-rich text-7xl md:text-[10rem] font-black leading-none title-spacing gold-neon-glow">
+                        KINK X KNOW
+                    </h1>
+<div class="flex items-center justify-center gap-8 mt-8">
+<div class="h-[1px] w-16 bg-gradient-to-r from-transparent via-gold-rich/60 to-transparent"></div>
+<p class="text-silver-deep font-light text-sm tracking-[0.5em] uppercase">EXPLORE THE WORLD THAT'S WAITING FOR YOU</p>
+<div class="h-[1px] w-16 bg-gradient-to-r from-transparent via-gold-rich/60 to-transparent"></div>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2">
+<div class="w-px h-16 bg-gradient-to-b from-gold-rich to-transparent"></div>
+</div>
+</section>
+<section class="max-w-[1400px] mx-auto w-full px-8 pb-32">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<a href="calculator.html" class="glass-card group relative h-[500px] flex flex-col justify-end p-8 cursor-pointer">
+<div class="absolute inset-0 z-0 opacity-40 group-hover:opacity-70 transition-opacity duration-700">
+<img alt="Seductive Art" class="w-full h-full object-cover" src="https://static.wixstatic.com/media/7e5434_578646af5a6746f6ab0237847c4cdee2~mv2.jpg/v1/fill/w_270,h_405,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/7e5434_578646af5a6746f6ab0237847c4cdee2~mv2.jpg"/>
+</div>
+<div class="absolute inset-0 card-image-overlay z-10"></div>
+<div class="relative z-20 space-y-4">
+<span class="material-symbols-outlined text-neon-pink text-4xl mb-4 block group-hover:scale-110 transition-transform duration-500">calculate</span>
+<h3 class="text-gold-rich font-serif-base text-2xl font-bold tracking-widest uppercase">Kink Calculator</h3>
+<p class="text-silver-deep text-sm font-light leading-relaxed group-hover:text-white transition-colors">Answer few questions and find out what actually is your secret desire.</p>
+<div class="h-[2px] w-12 bg-gold-rich group-hover:w-full group-hover:bg-neon-pink transition-all duration-700"></div>
+</div>
+</a>
+<div class="glass-card group relative h-[500px] flex flex-col justify-end p-8 cursor-pointer">
+<div class="absolute inset-0 z-0 opacity-40 group-hover:opacity-70 transition-opacity duration-700">
+<img alt="Seductive Art" class="w-full h-full object-cover" src="https://www.aarron.com/flow/2012/04/pedilicious-erotic-art/pedilicious-flow-art/"/>
+</div>
+<div class="absolute inset-0 card-image-overlay z-10"></div>
+<div class="relative z-20 space-y-4">
+<span class="material-symbols-outlined text-neon-pink text-4xl mb-4 block group-hover:scale-110 transition-transform duration-500">explore</span>
+<h3 class="text-gold-rich font-serif-base text-2xl font-bold tracking-widest uppercase">Understanding Kinks</h3>
+<p class="text-silver-deep text-sm font-light leading-relaxed group-hover:text-white transition-colors">Navigate through all the Kinks and learn and become a Kink God.</p>
+<div class="h-[2px] w-12 bg-gold-rich group-hover:w-full group-hover:bg-neon-pink transition-all duration-700"></div>
+</div>
+</div>
+<div class="glass-card group relative h-[500px] flex flex-col justify-end p-8 cursor-pointer">
+<div class="absolute inset-0 z-0 opacity-40 group-hover:opacity-70 transition-opacity duration-700">
+<img alt="Archives" class="w-full h-full object-cover" src="https://static.wixstatic.com/media/7e5434_5a74de3067ba4d6b9fa0e13c0a2fa7a1~mv2.jpg/v1/fill/w_279,h_517,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Riding-bounded-20x38.jpg"/>
+</div>
+<div class="absolute inset-0 card-image-overlay z-10"></div>
+<div class="relative z-20 space-y-4">
+<span class="material-symbols-outlined text-neon-pink text-4xl mb-4 block group-hover:scale-110 transition-transform duration-500">history_edu</span>
+<h3 class="text-gold-rich font-serif-base text-2xl font-bold tracking-widest uppercase">Past Results</h3>
+<p class="text-silver-deep text-sm font-light leading-relaxed group-hover:text-white transition-colors">Revisit your Kink archives.</p>
+<div class="h-[2px] w-12 bg-gold-rich group-hover:w-full group-hover:bg-neon-pink transition-all duration-700"></div>
+</div>
+</div>
+<div class="glass-card group relative h-[500px] flex flex-col justify-end p-8 cursor-pointer">
+<div class="absolute inset-0 z-0 opacity-40 group-hover:opacity-70 transition-opacity duration-700">
+<img alt="About Art" class="w-full h-full object-cover scale-x-[-1]" src="https://thumbs.dreamstime.com/b/animation-portrait-woman-latex-suit-mask-rabbit-red-background-black-patten-frame-symbol-bdsm-place-text-141944724.jpg"/>
+</div>
+<div class="absolute inset-0 card-image-overlay z-10"></div>
+<div class="relative z-20 space-y-4">
+<span class="material-symbols-outlined text-neon-pink text-4xl mb-4 block group-hover:scale-110 transition-transform duration-500">auto_awesome</span>
+<h3 class="text-gold-rich font-serif-base text-2xl font-bold tracking-widest uppercase">About Kink x Know</h3>
+<p class="text-silver-deep text-sm font-light leading-relaxed group-hover:text-white transition-colors">Everything about the project</p>
+<div class="h-[2px] w-12 bg-gold-rich group-hover:w-full group-hover:bg-neon-pink transition-all duration-700"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-40 relative">
+<div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+<div class="w-20 h-px bg-neon-pink/50 mx-auto mb-10"></div>
+<h2 class="text-gold-rich font-ornate text-4xl md:text-5xl font-bold mb-8 tracking-[0.2em]">Ready to enter the realm?</h2>
+<p class="text-silver-deep text-lg mb-12 max-w-2xl mx-auto font-light leading-relaxed italic">
+                        Everything you need to understand about yourself, all at one place.
+                    </p>
+<button class="px-12 py-4 bg-transparent border-2 border-gold-rich text-gold-rich font-serif-base font-bold text-xs uppercase tracking-[0.4em] hover:bg-neon-pink hover:border-neon-pink hover:text-white transition-all duration-500 neon-border-glow">
+                        Begin Exploration
+                    </button>
+</div>
+</section>
+</main>
+<footer class="py-12 border-t border-white/5 bg-royal-dark/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto flex flex-col items-center justify-center gap-6">
+<div class="flex items-center gap-8 mb-4">
+<span class="material-symbols-outlined text-gold-rich/30 text-xl">vaping_rooms</span>
+<span class="material-symbols-outlined text-neon-pink/30 text-xl">self_improvement</span>
+<span class="material-symbols-outlined text-gold-rich/30 text-xl">festival</span>
+</div>
+<p class="text-gold-rich/60 text-[10px] uppercase tracking-[0.5em] font-medium text-center">
+                    Copyright - 2026 - KinkxKnow
+                </p>
+<p class="text-gold-rich/60 text-[10px] uppercase tracking-[0.5em] font-medium text-center">
+                    Dibyanshu | Lucifer
+                </p>
+</div>
+</footer>
+</div>
+</body></html>
