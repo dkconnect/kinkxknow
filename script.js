@@ -179,4 +179,4 @@ class StyleExplorer {
         return res;
     }
 }
-const styleExplorer = new StyleExplorer();
+window.styleExplorer = new StyleExplorer();
